@@ -114,7 +114,7 @@ body[data-guide="ryoko"] .portrait:after{content:"";position:absolute;inset:0;po
 <fieldset><legend>今の状況をひとつ選んでください</legend><div class="detail-options" id="situation-options"></div></fieldset>
 <fieldset><legend>特に知りたいことは？</legend><div class="detail-options" id="perspective-options"></div></fieldset>
 <p class="form-note">今の気持ちにいちばん近いもので大丈夫です。結果を読んだ後も、別の視点を選び直せます。</p>
-<label class="field-label" for="consult-memo">りょうこに伝えたいこと <span class="optional">任意・120文字まで</span></label>
+<label class="field-label" for="consult-memo"><span id="memo-guide-name">りょうこ</span>に伝えたいこと <span class="optional">任意・120文字まで</span></label>
 <textarea class="consult-input" id="consult-memo" maxlength="120" rows="2" placeholder="例：気になる人に連絡するか迷っています" aria-describedby="consult-note"></textarea>
 <p id="consult-note" class="form-note">ここは気持ちを整理するためのメモです。AIが文章を理解して回答する仕組みではありません。内容は送信・保存せず、占い結果にだけ表示します。</p>
 <button class="action start-reading" type="submit">この内容でカードを選ぶ <span aria-hidden="true">→</span></button>
@@ -559,6 +559,8 @@ function selectGuide(key){
  document.body.dataset.guide=key;
  document.querySelectorAll('button[data-guide]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.guide===key)));
  document.getElementById('guide-name').textContent=`月の案内人 ${guide.name}`;
+  document.getElementById('memo-guide-name').textContent=guide.name;
+  if(quickRecord)document.getElementById('quick-card-label').textContent=quickRecord.date+' · '+quickRecord.card+'のカード · '+guide.name+'より';
  document.title=`月の案内人 ${guide.name}｜今夜、あなたに必要なメッセージ`;
  portrait.alt=`月の案内人 ${guide.name}`;
  const placeholder=document.getElementById('placeholder');
