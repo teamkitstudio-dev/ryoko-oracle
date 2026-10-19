@@ -26,6 +26,32 @@ body[data-guide="ryoko"] .portrait:after{content:"";position:absolute;inset:0;po
 .daily-item p{font-size:13px;line-height:1.9;margin:0}
 .daily-method{font-size:10px;line-height:1.8;color:#b5aabd;margin:13px 0 0}
 @media(max-width:480px){.daily-panel{padding:17px 16px}.daily-panel h3{font-size:18px}}
+
+/* 人気の無料ワンオラクル・相談メモ・任意のローカル履歴に着想を得た軽量UI。 */
+.quick-entry{max-width:560px;margin:0 auto 18px;padding:19px 18px 16px;border:1px solid #d6bc8066;border-radius:11px;background:linear-gradient(135deg,#352540,#20172b)}
+.quick-entry strong{display:block;font-size:16px;color:#e7d1a0;font-weight:normal;margin:0 0 6px}
+.quick-entry p{font-size:12px;color:#b5aabd;line-height:1.8;margin:0 0 13px}
+.quick-entry .action{width:100%;max-width:340px}
+.quick-panel{max-width:560px;margin:0 auto;text-align:left;border:1px solid #d6bc8066;border-radius:12px;background:linear-gradient(145deg,#2a1f35,#181122);padding:28px 30px}
+.quick-panel h2{font-size:23px;color:#e7d1a0;font-weight:400;margin:0 0 12px}
+.quick-panel p{line-height:2;color:#eee2cc;font-size:15px}
+.quick-panel .quick-label{color:#d6bc80;font-size:12px;letter-spacing:.11em;margin:0 0 12px}
+.quick-panel .quick-subtitle{color:#d6bc80;font-size:13px;margin:16px 0 3px}
+.quick-panel .quick-disclaimer{font-size:11px;color:#b5aabd}
+.quick-panel .actions{margin-top:18px}
+.consult-input{width:100%;resize:vertical;min-height:78px;max-height:180px;border-radius:6px;border:1px solid #a68a5366;padding:11px 13px;background:#181020;color:#f3eada;font-family:inherit;font-size:16px;line-height:1.7}
+.consult-input:focus-visible{outline:2px solid #d6bc80;outline-offset:2px}
+.consult-summary{font-size:13px;color:#d9c3eb;line-height:1.9;text-align:left;white-space:pre-wrap;overflow-wrap:anywhere;border-left:2px solid #d6bc80;padding:10px 13px;margin:0 0 22px;background:#d6bc8009}
+.journal{max-width:560px;margin:0 auto 18px;padding:17px 19px;border:1px solid #a68a535e;border-radius:10px;text-align:left;background:#20172980}
+.journal h2{font-size:15px;font-weight:normal;color:#e7d1a0;margin:0 0 8px}
+.journal p{color:#b5aabd;font-size:11px;line-height:1.8;margin:0 0 8px}
+.journal-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.journal-list li{font-size:12px;line-height:1.7;color:#e9d8b1;border-bottom:1px solid #d6bc8026;padding:7px 0}
+.journal-note{font-size:11px!important;color:#a798b3!important}
+.journal-delete{background:transparent;border:0;color:#d6bc80;font-size:12px;min-height:44px;text-decoration:underline}
+.save-status{font-size:12px;color:#e2ca91;line-height:1.8;margin:10px 0 0}
+@media(max-width:480px){.quick-panel{padding:24px 18px}.quick-panel h2{font-size:21px}.quick-entry{padding:18px 15px}.journal{padding:15px}}
+
 </style>
 </head>
 <body data-guide="ryoko">
@@ -43,6 +69,28 @@ body[data-guide="ryoko"] .portrait:after{content:"";position:absolute;inset:0;po
 <h1>今夜、あなたに必要な<br>メッセージ</h1>
 <p class="intro" id="intro">今、心にかかっていることを教えてください。</p>
 <div class="divider" aria-hidden="true">✧</div>
+<section class="quick-entry" id="quick-entry" aria-label="15秒で占う">
+ <strong>今日の一枚を、気軽に</strong>
+ <p>3つの質問を選ばず、今夜のヒントを一枚だけ受け取れます。無料・登録不要。</p>
+ <button class="action" id="quick-start" type="button">今日の一枚をひく <span aria-hidden="true">→</span></button>
+</section>
+<section class="quick-panel" id="quick-panel" aria-labelledby="quick-title" hidden>
+ <p class="quick-label" id="quick-card-label"></p>
+ <h2 id="quick-title" tabindex="-1"></h2>
+ <p id="quick-text"></p>
+ <p class="quick-subtitle">今日の小さな行動</p>
+ <p id="quick-action"></p>
+ <p class="quick-disclaimer">日付に基づくオリジナルの一枚読みです。未来を確定するものではありません。</p>
+ <div class="actions"><button class="action" id="quick-full" type="button">悩みを詳しく占う</button><button class="action secondary" id="quick-save" type="button">この一枚を保存</button></div>
+ <p class="save-status" id="quick-save-status" aria-live="polite"></p>
+</section>
+<section class="journal" id="journal" hidden aria-labelledby="journal-title">
+ <h2 id="journal-title">保存したカード</h2>
+ <p>保存した場合のみ、このブラウザ内に最大7件の履歴を残します。個別の相談メモ・生年月日は保存しません。</p>
+ <ul class="journal-list" id="journal-list"></ul>
+ <button class="journal-delete" id="journal-delete" type="button">保存した履歴をすべて削除</button>
+ <p class="save-status" id="journal-status" aria-live="polite"></p>
+</section>
 <form id="reading-setup" class="reading-setup" autocomplete="off">
 <p class="step-label">STEP 01 · あなたの今を選ぶ</p>
 <h2 id="setup-heading" tabindex="-1">今夜、何を占いましょうか</h2>
@@ -66,6 +114,9 @@ body[data-guide="ryoko"] .portrait:after{content:"";position:absolute;inset:0;po
 <fieldset><legend>今の状況をひとつ選んでください</legend><div class="detail-options" id="situation-options"></div></fieldset>
 <fieldset><legend>特に知りたいことは？</legend><div class="detail-options" id="perspective-options"></div></fieldset>
 <p class="form-note">今の気持ちにいちばん近いもので大丈夫です。結果を読んだ後も、別の視点を選び直せます。</p>
+<label class="field-label" for="consult-memo">りょうこに伝えたいこと <span class="optional">任意・120文字まで</span></label>
+<textarea class="consult-input" id="consult-memo" maxlength="120" rows="2" placeholder="例：気になる人に連絡するか迷っています" aria-describedby="consult-note"></textarea>
+<p id="consult-note" class="form-note">ここは気持ちを整理するためのメモです。AIが文章を理解して回答する仕組みではありません。内容は送信・保存せず、占い結果にだけ表示します。</p>
 <button class="action start-reading" type="submit">この内容でカードを選ぶ <span aria-hidden="true">→</span></button>
 <button type="button" class="change-settings" id="details-back">テーマ・星座の選択に戻る</button>
 </form>
@@ -86,6 +137,7 @@ body[data-guide="ryoko"] .portrait:after{content:"";position:absolute;inset:0;po
 <p class="result-label" id="result-label"></p>
 <h2 id="result-title" tabindex="-1"></h2>
 <p class="result-summary" id="result-summary"></p>
+<p class="consult-summary" id="consult-summary" hidden></p>
 <section class="daily-panel" id="daily-panel" aria-labelledby="daily-heading">
 <p class="daily-date" id="daily-date"></p>
 <h3 id="daily-heading"></h3>
@@ -97,7 +149,8 @@ body[data-guide="ryoko"] .portrait:after{content:"";position:absolute;inset:0;po
 </section>
 <div class="reading" id="reading"></div>
 <p class="reflection-note">今夜、結論を出さなくても構いません。残しておきたい問いをひとつ、持ち帰ってください。</p>
-<div class="actions"><button class="action" id="again" type="button">もう一度占う</button><button class="action secondary" id="reconsider" type="button">別の視点で考える</button><button class="action secondary" id="home" type="button">最初に戻る</button></div>
+<div class="actions"><button class="action" id="again" type="button">もう一度占う</button><button class="action secondary" id="reconsider" type="button">別の視点で考える</button><button class="action secondary" id="home" type="button">最初に戻る</button><button class="action secondary" id="save-reading" type="button">カードを保存</button></div>
+<p class="save-status" id="reading-save-status" aria-live="polite"></p>
 </section>
 <noscript><p>カードを選ぶには、ブラウザのJavaScriptを有効にしてください。</p></noscript>
 <footer><p>この占いは、娯楽と自己理解のためのコンテンツです。<br>未来や第三者の気持ちを確定するものではありません。<br>心に響く言葉を、あなた自身のペースで受け取ってください。</p><p class="signature">RYOKO ORACLE · 月の案内人 りょうこ</p></footer>
@@ -351,6 +404,78 @@ function renderDailyMessage(){
  document.getElementById('daily-action').textContent=action;
 }
 
+// 無料の今日の一枚。日付から同じ一枚を選び、サーバーを呼び出さない。
+const quickEntry=document.getElementById('quick-entry');
+const quickPanel=document.getElementById('quick-panel');
+const journal=document.getElementById('journal');
+const HISTORY_KEY='ryoko-oracle:reading-history-v1';
+const cardIds=['A','B','C'];
+let quickRecord=null;
+function dateKey(d){return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');}
+function dayIndex(d){return Math.floor(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/86400000);}
+function todayOneCard(){
+ const d=new Date(),day=dayIndex(d),card=cardIds[((day%3)+3)%3];
+ const item=dailyGuidance.general[((day%7)+7)%7];
+ const action=dailyActions.general[((day%7)+7)%7];
+ quickRecord={date:dateKey(d),theme:'今日の一枚',card:motifs[card],heading:item[0],action};
+ document.getElementById('quick-card-label').textContent=dateKey(d)+' · '+motifs[card]+'のカード · '+guides[currentGuide].name+'より';
+ document.getElementById('quick-title').textContent=item[0];
+ document.getElementById('quick-text').textContent=item[1]+' '+cardWays[card];
+ document.getElementById('quick-action').textContent=action;
+ document.getElementById('quick-save-status').textContent='';
+ setup.hidden=true;detailForm.hidden=true;selection.hidden=true;result.hidden=true;
+ quickEntry.hidden=true;journal.hidden=true;quickPanel.hidden=false;
+ intro.textContent='今日はどんなヒントが届くでしょう。';
+ document.getElementById('quick-title').focus();
+}
+document.getElementById('quick-start').addEventListener('click',todayOneCard);
+document.getElementById('quick-full').addEventListener('click',()=>{
+ quickPanel.hidden=true;quickEntry.hidden=false;
+ setup.hidden=false;intro.textContent='今、心にかかっていることを教えてください。';
+ document.getElementById('setup-heading').focus();renderHistory();
+});
+function readHistory(){
+ try{
+  const raw=localStorage.getItem(HISTORY_KEY);
+  const items=raw?JSON.parse(raw):[];
+  return Array.isArray(items)?items.filter(x=>x&&typeof x==='object'&&['date','theme','card','heading','action'].every(k=>typeof x[k]==='string')).slice(0,7):[];
+ }catch(e){return [];}
+}
+function renderHistory(){
+ const entries=readHistory(),list=document.getElementById('journal-list');
+ list.replaceChildren();
+ journal.hidden=entries.length===0;
+ entries.forEach(entry=>{
+  const li=document.createElement('li');
+  li.textContent=entry.date+' · '+entry.theme+' · '+entry.card+'｜'+entry.heading+'／'+entry.action;
+  list.append(li);
+ });
+}
+function saveHistory(record,statusId){
+ const status=document.getElementById(statusId);
+ if(!record){status.textContent='保存するカードがありません。';return;}
+ try{
+  const history=readHistory();
+  const exists=history.some(x=>x.date===record.date&&x.theme===record.theme&&x.card===record.card&&x.heading===record.heading);
+  const next=exists?history:[record,...history].slice(0,7);
+  localStorage.setItem(HISTORY_KEY,JSON.stringify(next));
+  status.textContent=exists?'このカードは保存済みです。':'この端末のブラウザに保存しました。';
+  renderHistory();
+ }catch(e){status.textContent='このブラウザでは保存できません。設定をご確認ください。';}
+}
+document.getElementById('quick-save').addEventListener('click',()=>saveHistory(quickRecord,'quick-save-status'));
+document.getElementById('save-reading').addEventListener('click',()=>{
+ if(!currentCard)return;
+ const d=new Date();
+ saveHistory({date:dateKey(d),theme:themes[selectedTheme],card:motifs[currentCard],heading:title.textContent,action:document.getElementById('daily-action').textContent},'reading-save-status');
+});
+document.getElementById('journal-delete').addEventListener('click',()=>{
+ if(!window.confirm('この端末に保存した占い履歴をすべて削除しますか？'))return;
+ try{localStorage.removeItem(HISTORY_KEY);renderHistory();document.getElementById('journal-status').textContent='履歴を削除しました。';}
+ catch(e){document.getElementById('journal-status').textContent='削除できませんでした。ブラウザの設定をご確認ください。';}
+});
+// 日付以外の情報はローカルストレージに自動保存しない。
+renderHistory();
 const detailForm=document.getElementById('reading-details');
 let selectedSituation='',selectedPerspective='',detailsTheme='';
 function renderOptions(containerId,name,items){
@@ -362,7 +487,7 @@ function renderOptions(containerId,name,items){
  });
 }
 function showDetails(){
- setup.hidden=true;selection.hidden=true;result.hidden=true;detailForm.hidden=false;currentCard=null;
+ setup.hidden=true;selection.hidden=true;result.hidden=true;quickPanel.hidden=true;quickEntry.hidden=true;journal.hidden=true;detailForm.hidden=false;currentCard=null;
  if(detailsTheme!==selectedTheme){
   renderOptions('situation-options','situation',situations[selectedTheme]);
   renderOptions('perspective-options','perspective',perspectives);
@@ -375,7 +500,7 @@ function showDetails(){
 detailForm.addEventListener('submit',event=>{
  event.preventDefault();if(!detailForm.reportValidity())return;
  const data=new FormData(detailForm);selectedSituation=data.get('situation');selectedPerspective=data.get('perspective');
- detailForm.hidden=true;selection.hidden=false;
+ detailForm.hidden=true;quickPanel.hidden=true;selection.hidden=false;
  document.getElementById('selection-context').textContent=`${contextLabel()} · ${situations[selectedTheme][selectedSituation].label}`;
  document.getElementById('selection-perspective').textContent=perspectives[selectedPerspective].label;
  intro.textContent='選んだ状況を心に置いて、惹かれる一枚を。';
@@ -400,6 +525,11 @@ document.querySelectorAll('[data-card]').forEach(button=>button.addEventListener
  const situation=situations[selectedTheme][Number(selectedSituation)];
  const perspective=perspectives[Number(selectedPerspective)];
  document.getElementById('result-summary').textContent=`今回の相談：${situation.label} ／ ${perspective.label}`;
+  const memo=document.getElementById('consult-memo').value.trim();
+  const memoDisplay=document.getElementById('consult-summary');
+  memoDisplay.hidden=!memo;
+  memoDisplay.textContent=memo?'相談メモ（あなたが入力した言葉）：'+memo:'';
+  document.getElementById('reading-save-status').textContent='';
   renderDailyMessage();
  appendSection('01 · 今の状況から読み解く',situation.text);
  appendSection('02 · カードが示すテーマ',message[1]);
@@ -414,8 +544,8 @@ document.querySelectorAll('[data-card]').forEach(button=>button.addEventListener
 }));
 function reset(home){
  result.hidden=true;detailForm.hidden=true;currentCard=null;
- if(home){selection.hidden=true;setup.hidden=false;intro.textContent='今、心にかかっていることを教えてください。';document.getElementById('setup-heading').focus();window.scrollTo({top:0,behavior:'instant'});}
- else{selection.hidden=false;intro.textContent='同じテーマで、もう一度カードを選んでください。';if(lastCard)lastCard.focus();}
+ if(home){selection.hidden=true;quickPanel.hidden=true;quickEntry.hidden=false;setup.hidden=false;intro.textContent='今、心にかかっていることを教えてください。';renderHistory();document.getElementById('setup-heading').focus();window.scrollTo({top:0,behavior:'instant'});}
+ else{quickPanel.hidden=true;selection.hidden=false;intro.textContent='同じテーマで、もう一度カードを選んでください。';if(lastCard)lastCard.focus();}
 }
 document.getElementById('again').addEventListener('click',()=>reset(false));
 document.getElementById('home').addEventListener('click',()=>reset(true));
