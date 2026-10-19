@@ -444,7 +444,7 @@ function readHistory(){
 function renderHistory(){
  const entries=readHistory(),list=document.getElementById('journal-list');
  list.replaceChildren();
- journal.hidden=entries.length===0;
+ journal.hidden=entries.length===0||setup.hidden;
  entries.forEach(entry=>{
   const li=document.createElement('li');
   li.textContent=entry.date+' · '+entry.theme+' · '+entry.card+'｜'+entry.heading+'／'+entry.action;
