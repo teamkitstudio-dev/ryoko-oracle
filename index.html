@@ -15,6 +15,17 @@ body[data-guide="ryoko"] .portrait:after{content:"";position:absolute;inset:0;po
 .guide-switch{display:flex;justify-content:center;gap:8px;margin:20px auto 0;flex-wrap:wrap}.guide-switch button{border:1px solid #a68a535e;border-radius:30px;color:#b5aabd;background:transparent;padding:9px 18px;min-height:44px;font-size:12px}.guide-switch button[aria-pressed="true"]{background:#d6bc80;color:#21182b;border-color:#d6bc80}
 
 :root{color-scheme:dark;--gold:#d6bc80;--muted:#b5aabd;--ink:#f3eada}*{box-sizing:border-box}body{margin:0;background:#100d18;color:var(--ink);font-family:"Yu Mincho","Hiragino Mincho ProN",serif;line-height:1.8;background-image:radial-gradient(ellipse at 50% 28%,#37234480,transparent 65%)}button{font:inherit;cursor:pointer}button:focus-visible{outline:2px solid #f5dba0;outline-offset:6px}[hidden]{display:none!important}.shell{max-width:1000px;margin:auto;padding:26px 24px 32px;text-align:center}.brand{display:flex;align-items:center;justify-content:center;gap:12px;color:var(--gold);font-size:13px;letter-spacing:.22em}.brand:before,.brand:after{content:"";height:1px;width:44px;background:#b79b5855}.portrait{position:relative;width:264px;height:350px;margin:30px auto 24px;border-radius:18px;border:1px solid #a58a575e;overflow:hidden;background:radial-gradient(ellipse at 50% 35%,#66517b55,transparent 70%),#1c142a;box-shadow:0 0 55px #a278c315}.portrait img{width:100%;height:100%;object-fit:contain;display:block}.placeholder{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:var(--gold)}.moon{font-size:76px;line-height:1;text-shadow:0 0 28px #d6bc8055}.placeholder small{font-size:10px;letter-spacing:.2em;color:#b6a6c3}.eyebrow{color:var(--gold);letter-spacing:.25em;font-size:10px;margin:0 0 12px}h1{font-size:clamp(23px,4.4vw,34px);font-weight:400;letter-spacing:.1em;line-height:1.65;margin:0 0 14px}.intro{color:var(--muted);font-size:13px;letter-spacing:.07em;margin:0}.divider{color:var(--gold);font-size:12px;margin:24px 0;display:flex;justify-content:center;align-items:center;gap:18px}.divider:before,.divider:after{content:"";width:64px;height:1px;background:#aa90513d}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;max-width:630px;margin:0 auto}.card{border:1px solid #b69a5c73;background:linear-gradient(145deg,#352341,#1a1426 70%);color:var(--gold);border-radius:70px 70px 6px 6px;padding:12px;min-width:0;aspect-ratio: .7;position:relative;transition:transform .25s,box-shadow .25s,border-color .25s}.card:before{content:"";position:absolute;inset:7px;border:1px solid #a68a5340;border-radius:64px 64px 3px 3px;pointer-events:none}.card:hover{transform:translateY(-5px);border-color:var(--gold);box-shadow:0 12px 32px #0005,0 0 22px #c6a06618}.card-inner{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center}.card svg{width:64px;height:76px;max-width:75%;fill:none;stroke:currentColor;stroke-width:1.15}.letter{font-size:19px;letter-spacing:.14em;margin-top:18px}.motif{font-size:10px;color:#b7a9c3;letter-spacing:.15em}.hint{font-size:11px;color:#95879f;margin:20px 0 0;letter-spacing:.1em}.result{max-width:560px;margin:0 auto;border:1px solid #ae925351;border-radius:8px;background:linear-gradient(145deg,#2b2037b0,#191321);padding:28px 30px}.result-label{color:var(--gold);font-size:12px;letter-spacing:.18em;margin:0 0 12px}.result h2{font-size:24px;font-weight:400;margin:0 0 18px;color:#e7d1a0}.reading{text-align:left;font-size:15px;line-height:2.25;letter-spacing:.06em;margin:0}.actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:26px}.action{border:1px solid #b49a66;border-radius:3px;padding:10px 22px;background:#d5bc80;color:#21182b;font-size:13px;min-height:44px}.action.secondary{background:transparent;color:var(--gold);border-color:#a68a535e}.action:hover{filter:brightness(1.12)}footer{border-top:1px solid #b3975d22;max-width:630px;margin:38px auto 0;padding-top:19px}footer p{color:#95879f;font-size:10px;line-height:1.9;margin:0 0 8px}footer .signature{color:#b59a65;letter-spacing:.18em;font-size:10px}noscript p{color:var(--gold)}@media(max-width:480px){.shell{padding:22px 20px 24px}.portrait{width:236px;height:314px;margin:25px auto 22px}.moon{font-size:60px}.placeholder small{font-size:8px}h1{font-size:23px;letter-spacing:.045em}.intro{font-size:12px}.cards{gap:10px}.card{padding:9px;aspect-ratio:.59;border-radius:55px 55px 5px 5px}.card:before{inset:5px;border-radius:50px 50px 3px 3px}.card svg{width:44px;height:58px}.letter{margin-top:12px;font-size:17px}.motif{font-size:9px;letter-spacing:.05em}.divider{margin:22px 0}.result{padding:24px 22px}.result h2{font-size:21px}.reading{font-size:14px}.actions{gap:10px}.action{padding:10px 16px}footer{margin-top:30px}}@media(prefers-reduced-motion:reduce){.card{transition:none}}
+
+/* 日付と相談内容から組み立てる短い手引き。既存の長文鑑定は維持する。 */
+.daily-panel{text-align:left;border:1px solid #d6bc806a;border-radius:10px;background:linear-gradient(135deg,#362745,#22182f);padding:20px 22px;margin:0 0 26px;box-shadow:0 6px 22px #0002}
+.daily-date{color:#d6bc80;font-size:11px;letter-spacing:.12em;margin:0 0 8px}
+.daily-panel h3{font-size:20px;line-height:1.6;font-weight:400;color:#efddac;margin:0 0 10px}
+.daily-message{font-size:14px;line-height:1.95;letter-spacing:.02em;margin:0 0 15px}
+.daily-item{border-top:1px solid #b49a6640;padding-top:12px;margin-top:12px}
+.daily-item strong{display:block;font-size:12px;color:#d6bc80;letter-spacing:.08em;font-weight:normal;margin-bottom:3px}
+.daily-item p{font-size:13px;line-height:1.9;margin:0}
+.daily-method{font-size:10px;line-height:1.8;color:#b5aabd;margin:13px 0 0}
+@media(max-width:480px){.daily-panel{padding:17px 16px}.daily-panel h3{font-size:18px}}
 </style>
 </head>
 <body data-guide="ryoko">
@@ -75,6 +86,14 @@ body[data-guide="ryoko"] .portrait:after{content:"";position:absolute;inset:0;po
 <p class="result-label" id="result-label"></p>
 <h2 id="result-title" tabindex="-1"></h2>
 <p class="result-summary" id="result-summary"></p>
+<section class="daily-panel" id="daily-panel" aria-labelledby="daily-heading">
+<p class="daily-date" id="daily-date"></p>
+<h3 id="daily-heading"></h3>
+<p class="daily-message" id="daily-message"></p>
+<div class="daily-item"><strong>今日の気づき</strong><p id="daily-caution"></p></div>
+<div class="daily-item"><strong>今日の小さな開運アクション</strong><p id="daily-action"></p></div>
+<p class="daily-method">日付・テーマ・選んだ内容に合わせた創作メッセージです。未来の的中や運勢の科学的判定を示すものではありません。</p>
+</section>
 <div class="reading" id="reading"></div>
 <p class="reflection-note">今夜、結論を出さなくても構いません。残しておきたい問いをひとつ、持ち帰ってください。</p>
 <div class="actions"><button class="action" id="again" type="button">もう一度占う</button><button class="action secondary" id="reconsider" type="button">別の視点で考える</button><button class="action secondary" id="home" type="button">最初に戻る</button></div>
@@ -208,6 +227,70 @@ const perspectives=[
  {label:'選択肢を比べて考えたい',text:'今は正解をひとつ決めるより、選択肢を並べる視点を選びました。それぞれの「得られそうなこと」「気になる負担」「まだ分からないこと」を書いてみましょう。今すぐ決めずに保留する道も含めて構いません。怖さがあることだけを理由に避けず、期待があることだけを理由に急がず、確かめられる条件から比較してください。',question:'決める前にひとつだけ情報が増えるなら、何を知ると判断しやすくなりますか。'},
  {label:'動く前に準備したい',text:'今は大きく動く決心より、安心して試せる準備をする視点を選びました。かけられる時間、使えるお金、頼れる相手、途中でやめる目安を考えてみてください。小さな試行は、成功を証明するためでなく自分に合うか確かめるためのものです。試して違うと分かった場合も、その経験を次の判断材料にして構いません。',question:'今週、負担を増やさず確かめられることは何ですか。続けるか見直すかを、何で判断しますか。'}
 ];
+
+/* 人気の年間占い本に見られる「日々の短いヒント」「テーマ別提案」の構成だけを参考にした完全オリジナル文章。
+ * 固定文の組み合わせであり、生成AI・天体運行の計算・未来予知ではない。外部通信・保存なし。
+ */
+const dailyGuidance={
+ love:[
+  ['本音を少しだけ言葉に','言うべきことより、今いちばん大切にされたいことを考えてみて。急いで答えを出さなくても、気持ちが見えてくることがあります。','既読や返信の早さひとつで、相手の心まで決めつけないように。'],
+  ['小さな会話を大切に','印象的なひと言より、自然に話せた時間に目を向ける日。心地よい関係は、背伸びをしないやり取りから始まります。','相手に合わせすぎて、自分の希望を後回しにしていませんか。'],
+  ['待つこともひとつの選択','進めたい気持ちがあっても、相手と自分の歩幅は同じでなくて大丈夫。今日は心の余白を持つことがテーマです。','「きっとこう思っている」と想像だけで結論を急がないで。'],
+  ['心地よい距離を探す','親しくなることと、無理をすることは別です。あなたが自然体でいられる時間をひとつ思い出してみましょう。','断りづらい約束に、その場で返事をする必要はありません。'],
+  ['気持ちを確かめる時間','相手を変える方法より、あなたが求める安心の形を見つける時間に。温かな記憶にも、違和感にも耳を傾けて。','「好きだから我慢する」を当たり前にしないこと。'],
+  ['言葉より行動を見つめる','言葉に迷うときは、これまでに交わした小さな約束や気遣いを振り返ってみて。見えている事実を大切に。','たった一度の出来事を、関係全体の評価に広げないで。'],
+  ['未来より今日の安心','この先がどうなるかより、今日のあなたが少し穏やかでいられることを優先してもいい日です。','不安を消すためだけの連絡や決断は、少し時間を置いて。']
+ ],
+ work:[
+  ['進め方をひとつ整える','気合いを足すより、今日の仕事の順番を見直してみましょう。小さな整理が、気持ちの余白につながります。','全部を自分の責任にせず、条件や役割も確認して。'],
+  ['見えない努力に気づく','結果だけでなく、昨日よりスムーズになったことをひとつ数えてみて。積み重ねには意味があります。','他人の進み方だけを基準に、自分を追い立てないで。'],
+  ['頼ることも仕事の力','一人で抱え込む前に、確認したいことを短い言葉にしてみましょう。質問は準備のひとつです。','曖昧な指示のまま無理に進める必要はありません。'],
+  ['新しい視点を拾う','いつもの手順で詰まるときは、別の進め方をひとつだけ想像して。大きく変える前に試せることがあります。','準備不足のまま、大きな契約や転職を決めないで。'],
+  ['力の配分を選び直す','今日は頑張る場所を選ぶことがテーマ。すべてを同じ熱量で進めなくても構いません。','疲れや安全に関わるサインを後回しにしないで。'],
+  ['経験を言葉に残す','うまくいった小さな工夫をメモに残してみて。次に同じ場面が来たときの助けになるでしょう。','一度の評価だけで、自分の可能性を決めつけないで。'],
+  ['焦りをほどいて前へ','先を急ぎたくなったら、今日終えられる作業をひとつ決めて。手応えは小さな区切りからも生まれます。','重要な判断は、情報の足りないところを確かめてから。']
+ ],
+ money:[
+  ['お金の流れを見つめる','何かを買う前に、今日はすでに持っているものを見直す日に。豊かさの感じ方は人によって違います。','占いの結果を投資や購入の根拠にしないでください。'],
+  ['安心につながる整理','大きな目標より、今月の支払いをひとつ確認してみて。分かることが増えると、不安の輪郭も見えてきます。','焦って借りたり、利益を約束する話を信じたりしないで。'],
+  ['使い方の優先順位を','必要なものと、今ほしいものを並べてみましょう。どちらも大切にしながら選んでいいのです。','安さや限定の言葉だけで、予定外の出費を決めないで。'],
+  ['小さな数字に目を向ける','一度に家計を変えなくても大丈夫。見直すなら、手間の少ない項目ひとつから始めて。','節約のために、生活や健康の安全を削らないで。'],
+  ['未来の安心を育てる','今日できるのは、目標額を決めることではなく、今の収支を知ることかもしれません。','周囲と比べて、無理な貯蓄や投資をしないで。'],
+  ['納得できる買い物を','使う場面を具体的に思い浮かべてから選んでみて。満足感は金額だけでは測れません。','大きな支払いは条件と予算を確かめてから。'],
+  ['使わない選択にも価値','今日は一度立ち止まって、迷っている支出の理由を書き出す日に。決めないことも選択です。','幸運日だから儲かる、という保証はありません。']
+ ],
+ general:[
+  ['心の余白をひとつ','頑張って答えを探すより、今日は考えごとをひとつ減らしてみて。静かな時間にも意味があります。','疲れを感じるときは、無理に前向きになろうとしないで。'],
+  ['小さな好きに気づく','気分が少し軽くなる瞬間をひとつ見つけてみましょう。誰かと比べる必要はありません。','すべての予定に同じ力を注がなくても大丈夫。'],
+  ['境界をやさしく守る','相手の期待と自分の時間、どちらも大切にしていい日。言いにくいことほど短く伝えてみて。','無理な頼まれごとに、その場で答えを出さないで。'],
+  ['今日できる範囲で','大きな計画ではなく、今の暮らしでできる小さな調整を探しましょう。','変えられないことまで、自分を責める理由にしないで。'],
+  ['違う道も眺めてみる','ひとつの答えに固執せず、選べる道を二つ書いてみて。すぐに選ぶ必要はありません。','新しいことを始める前に、使える時間を確認して。'],
+  ['気持ちを整える日','人に話したいことと、今は自分の中に置いておきたいこと。どちらがあっても構いません。','周囲の機嫌をすべて引き受けないで。'],
+  ['続けたいことを選ぶ','これまで守ってきた日常にも目を向けて。新しいことだけが前進ではありません。','今できないことを、ずっとできないことと決めつけないで。']
+ ]
+};
+const dailyActions={
+ love:['自分が望む関係を一文で書く','安心したやり取りを一つ思い出す','送りたい言葉を下書きし、送信はあとで考える','心地よい誘い方を一つ考える','無理だと感じる約束を一つ見直す','相手の実際の言葉と自分の想像を分ける','自分の好きなことに10分だけ使う'],
+ work:['今日の優先事項を一つだけ決める','曖昧な依頼の確認事項を一行にする','うまくいった工夫を一つ記録する','5分だけ作業環境を整える','引き受けている役割を書き出す','休憩を取るタイミングを先に決める','調べたい仕事の条件を一つメモする'],
+ money:['今月の支払予定を一件だけ確認する','使っていない契約がないか確かめる','買う前に使用頻度を想像する','一週間分の支出をざっと振り返る','必要なものと欲しいものを分けて書く','予算を確認するまで大きな支払いを保留する','お金をかけずに楽しめることを一つ探す'],
+ general:['深呼吸して今の気分を言葉にする','予定を一つだけ軽くできないか考える','好きな音楽を一曲聴く','今週気になったことを一行残す','断ってもよい用事がないか振り返る','家の中の一か所だけ整える','今日できたことを一つ数える']
+};
+const cardWays={A:'月は「立ち止まって心を聞く」象徴。',B:'星は「遠くの理想より、小さな希望を見つける」象徴。',C:'鍵は「自分で選ぶための境界と準備」の象徴。'};
+function renderDailyMessage(){
+ const d=new Date(),day=Math.floor(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/86400000);
+ const sign=selectedZodiac===''?0:Number(selectedZodiac)+1;
+ const situation=Number(selectedSituation),perspective=Number(selectedPerspective);
+ const cardIndex=['A','B','C'].indexOf(currentCard);
+ const offset=situation*2+perspective*3+sign+cardIndex;
+ const details=dailyGuidance[selectedTheme][((day+offset)%7+7)%7];
+ const action=dailyActions[selectedTheme][((day*3+situation+perspective+sign+cardIndex)%7+7)%7];
+ document.getElementById('daily-date').textContent='今日の手引き · '+new Intl.DateTimeFormat('ja-JP',{year:'numeric',month:'long',day:'numeric',weekday:'long'}).format(d);
+ document.getElementById('daily-heading').textContent=details[0];
+ document.getElementById('daily-message').textContent=details[1]+' '+cardWays[currentCard];
+ document.getElementById('daily-caution').textContent=details[2];
+ document.getElementById('daily-action').textContent=action;
+}
+
 const detailForm=document.getElementById('reading-details');
 let selectedSituation='',selectedPerspective='',detailsTheme='';
 function renderOptions(containerId,name,items){
@@ -257,6 +340,7 @@ document.querySelectorAll('[data-card]').forEach(button=>button.addEventListener
  const situation=situations[selectedTheme][Number(selectedSituation)];
  const perspective=perspectives[Number(selectedPerspective)];
  document.getElementById('result-summary').textContent=`今回の相談：${situation.label} ／ ${perspective.label}`;
+  renderDailyMessage();
  appendSection('01 · 今の状況から読み解く',situation.text);
  appendSection('02 · カードが示すテーマ',message[1]);
  appendSection('03 · 心に留めたいこと',message[2]);
