@@ -28,6 +28,7 @@ function runOracleSmoke(html){
  const guides=['ryoko','ren'].map(id=>{const e=new El('guide-'+id);e.dataset.guide=id;return e});
  const small=new El('small');small.tag='small';get('placeholder').append(small);
  const document={
+  body:{dataset:{}},
   getElementById:get,
   createElement:tag=>{const el=new El('created-'+tag);el.tag=tag;return el},
   querySelectorAll:selector=>selector==='[data-card]'?cards:selector==='button[data-guide]'?guides:[],
