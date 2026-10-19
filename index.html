@@ -6,6 +6,8 @@
 <meta name="theme-color" content="#14101f">
 <title>月の案内人 りょうこ｜今夜、あなたに必要なメッセージ</title>
 <style>
+.detail-options{display:grid;grid-template-columns:minmax(0,1fr);gap:10px}.detail-options .theme-option span{text-align:left;padding:14px 16px;line-height:1.6}.result-summary{color:#b5aabd;font-size:12px;line-height:1.9;border-bottom:1px solid #ae925533;padding-bottom:18px;margin:0 0 24px;overflow-wrap:anywhere}.selection-perspective{font-size:12px;color:#b5aabd;margin:-12px 0 24px}.reflection-note{color:#d6bc80;font-size:12px;line-height:1.9;margin:22px 0 0}#detail-heading:focus{outline:none}.result h2{text-wrap:balance}
+
 /* 元画像は加工せず、表示時だけ深紫の陰影を重ねる。 */
 body[data-guide="ryoko"] .portrait:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,#21102e1f,#1a0c303d 65%,#11081f88);border-radius:inherit}
 .reading-setup{max-width:560px;margin:0 auto;text-align:left;border:1px solid #ae925351;border-radius:12px;padding:26px;background:#201729a6}.step-label{color:var(--gold);font-size:10px;letter-spacing:.2em;margin:0 0 8px}.reading-setup h2,.selection-heading{font-size:21px;font-weight:400;margin:0 0 20px;text-align:center}.reading-setup fieldset{border:0;padding:0;margin:0 0 24px;min-width:0}.reading-setup legend,.field-label{font-size:13px;display:block;color:#e5d3b3;margin-bottom:10px}.theme-options{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.theme-option{position:relative;cursor:pointer}.theme-option input{position:absolute;opacity:0;width:1px;height:1px}.theme-option span{display:block;text-align:center;border:1px solid #a68a535e;border-radius:5px;padding:12px 4px;color:#b5aabd;font-size:13px}.theme-option input:checked+span{background:#d6bc80;color:#21182b;border-color:#d6bc80}.theme-option input:focus-visible+span{outline:2px solid #f5dba0;outline-offset:3px}.optional{font-size:10px;color:#a798b3;margin-left:8px}.profile-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}input[type=date],select{width:100%;min-width:0;max-width:100%;min-height:46px;padding:8px 10px;border:1px solid #a68a5366;border-radius:5px;background:#181020;color:#f3eada;font-family:inherit;font-size:16px}input:focus-visible,select:focus-visible{outline:2px solid #d6bc80;outline-offset:3px}.form-note{font-size:11px;color:#b5aabd;line-height:1.9;margin:12px 0}.start-reading{display:block;margin:22px auto 0;min-width:190px}.selection-heading{margin-bottom:8px!important}.selection-context{color:var(--gold);font-size:12px;margin:0 0 22px;letter-spacing:.1em}.change-settings{display:block;background:transparent;border:0;color:#b5aabd;font-size:12px;margin:18px auto 0;padding:8px;min-height:44px;text-decoration:underline;text-underline-offset:4px}#reading section+section{margin-top:28px}#reading h3{color:#d6bc80;font-size:13px;letter-spacing:.04em;font-weight:400;margin:0 0 10px}#reading p{margin:0}.result-label{overflow-wrap:anywhere}#setup-heading:focus,#selection-heading:focus,#result-title:focus{outline:none}@media(max-width:480px){.reading-setup{padding:24px 18px}.profile-grid{grid-template-columns:minmax(0,1fr)}.theme-options{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -43,26 +45,39 @@ body[data-guide="ryoko"] .portrait:after{content:"";position:absolute;inset:0;po
 <div><label class="field-label" for="zodiac">星座<span class="optional">任意</span></label><select id="zodiac" aria-describedby="profile-note"><option value="">指定しない</option></select></div></div>
 <p id="profile-note" class="form-note">生年月日から星座を自動選択します。星座だけ選んでも、入力なしでも占えます。星座を手動で変えると生年月日は消去されます。一般的な日付区分のため、境界日の方は星座を手動でお選びください。</p>
 <p id="privacy-note" class="form-note">生年月日はこの端末内で星座を求めるためだけに使用し、保存・送信しません。</p>
-<button class="action start-reading" type="submit">カードを選ぶ <span aria-hidden="true">→</span></button>
+<button class="action start-reading" type="submit">状況を詳しく選ぶ <span aria-hidden="true">→</span></button>
 <p class="form-note">テーマ・カード・星座に応じた固定文です。出生時刻や出生地を使う精密な星図鑑定ではありません。</p>
 </form>
+<form id="reading-details" class="reading-setup" autocomplete="off" hidden>
+<p class="step-label">STEP 02 · 悩みをもう少し深く</p>
+<h2 id="detail-heading" tabindex="-1">今のあなたに近いものは？</h2>
+<p class="selection-context" id="detail-context"></p>
+<fieldset><legend>今の状況をひとつ選んでください</legend><div class="detail-options" id="situation-options"></div></fieldset>
+<fieldset><legend>特に知りたいことは？</legend><div class="detail-options" id="perspective-options"></div></fieldset>
+<p class="form-note">今の気持ちにいちばん近いもので大丈夫です。結果を読んだ後も、別の視点を選び直せます。</p>
+<button class="action start-reading" type="submit">この内容でカードを選ぶ <span aria-hidden="true">→</span></button>
+<button type="button" class="change-settings" id="details-back">テーマ・星座の選択に戻る</button>
+</form>
 <section id="selection" aria-label="3枚のカードから選ぶ" hidden>
-<p class="step-label">STEP 02 · 直感で選ぶ</p>
+<p class="step-label">STEP 03 · 直感で選ぶ</p>
 <h2 class="selection-heading" id="selection-heading" tabindex="-1">あなたが惹かれる一枚は？</h2>
 <p class="selection-context" id="selection-context"></p>
+<p class="selection-perspective" id="selection-perspective"></p>
 <div class="cards">
 <button class="card" type="button" data-card="A" aria-label="カードA、月を選ぶ"><span class="card-inner"><svg viewBox="0 0 64 76" aria-hidden="true"><path d="M44 12a26 26 0 1 0 9 43A27 27 0 0 1 44 12Z"/><path d="m48 23 2 5 5 2-5 2-2 5-2-5-5-2 5-2Z"/><circle cx="20" cy="62" r="1"/></svg><span class="letter">A</span><span class="motif">月 — MOON</span></span></button>
 <button class="card" type="button" data-card="B" aria-label="カードB、星を選ぶ"><span class="card-inner"><svg viewBox="0 0 64 76" aria-hidden="true"><path d="m32 10 6 20 20 8-20 7-6 21-6-21-20-7 20-8Z"/><path d="m32 23 3 12 10 3-10 3-3 12-3-12-10-3 10-3Z"/><path d="M9 14v8M5 18h8M52 55v8M48 59h8"/></svg><span class="letter">B</span><span class="motif">星 — STAR</span></span></button>
 <button class="card" type="button" data-card="C" aria-label="カードC、鍵を選ぶ"><span class="card-inner"><svg viewBox="0 0 64 76" aria-hidden="true"><circle cx="32" cy="23" r="13"/><circle cx="32" cy="23" r="6"/><path d="M29 36v29h6V54h10v-7H35V36M25 65h14"/><path d="M9 39v6M6 42h6M51 14v6M48 17h6"/></svg><span class="letter">C</span><span class="motif">鍵 — KEY</span></span></button>
 </div>
 <p class="hint">正解はありません。あなたの直感を大切に。</p>
-<button type="button" class="change-settings" id="change-settings">占う内容を変更する</button>
+<button type="button" class="change-settings" id="change-settings">状況・知りたいことを変更する</button>
 </section>
 <section id="result" class="result" aria-labelledby="result-title" hidden>
 <p class="result-label" id="result-label"></p>
 <h2 id="result-title" tabindex="-1"></h2>
+<p class="result-summary" id="result-summary"></p>
 <div class="reading" id="reading"></div>
-<div class="actions"><button class="action" id="again" type="button">もう一度占う</button><button class="action secondary" id="home" type="button">最初に戻る</button></div>
+<p class="reflection-note">今夜、結論を出さなくても構いません。残しておきたい問いをひとつ、持ち帰ってください。</p>
+<div class="actions"><button class="action" id="again" type="button">もう一度占う</button><button class="action secondary" id="reconsider" type="button">別の視点で考える</button><button class="action secondary" id="home" type="button">最初に戻る</button></div>
 </section>
 <noscript><p>カードを選ぶには、ブラウザのJavaScriptを有効にしてください。</p></noscript>
 <footer><p>この占いは、娯楽と自己理解のためのコンテンツです。<br>未来や第三者の気持ちを確定するものではありません。<br>心に響く言葉を、あなた自身のペースで受け取ってください。</p><p class="signature">RYOKO ORACLE · 月の案内人 りょうこ</p></footer>
@@ -165,14 +180,71 @@ zodiac.addEventListener('change',()=>{birth.value='';});
 let selectedTheme='love', selectedZodiac='', currentGuide='ryoko', lastCard=null, currentCard=null;
 function contextLabel(){return `${themes[selectedTheme]}${selectedZodiac===''?'':` · ${zodiacNames[Number(selectedZodiac)]}`}`;}
 function updateAttribution(){if(currentCard)document.getElementById('result-label').textContent=`${guides[currentGuide].name}より · ${contextLabel()} · CARD ${currentCard} ${motifs[currentCard]}`;}
-setup.addEventListener('submit',event=>{
- event.preventDefault();
- if(!setup.reportValidity())return;
- selectedTheme=new FormData(setup).get('theme');selectedZodiac=zodiac.value;
- setup.hidden=true;result.hidden=true;selection.hidden=false;currentCard=null;
- document.getElementById('selection-context').textContent=contextLabel();
- intro.textContent='心を静かに、今惹かれるカードをひとつ。';
+// 状況と視点はユーザー自身が選ぶ。性格や相手の内心を推定しない。
+const situations={
+ love:[
+ {label:'これからの出会い',text:'新しい出会いを望むとき、まず「どんな人に選ばれるか」ではなく、「どんな時間を一緒に過ごしたいか」を言葉にしてみましょう。会う機会を増やすことと、安心して人を知ることは別の課題です。今の生活に無理なく加えられる交流なのか、自分を飾らず話せる場なのか、その両方を確かめる余地があります。',options:'交流の場をひとつ試す道と、今は自分の生活や希望を整える道があります。前者では新しい経験が得られる一方、疲れない頻度を決める必要があります。後者では自分の基準を考えられる一方、機会が自然に増えるとは限りません。どちらか一方を永遠に選ぶ必要はありません。',question:'一緒にいて安心できる場面はどんなときですか。出会いの数と、ひとりを知る時間では、今どちらを大切にしたいでしょうか。'},
+ {label:'気になる人・片思い',text:'気になる相手との関係では、事実と想像が混ざりやすくなります。実際に交わした言葉、相手が取った行動、そこからあなたが期待したことを、いったん分けてみてください。返信の速さや一度の態度だけで内心を決めつけず、自分が無理をしすぎず関われているかも大切な観察点です。',options:'短い会話を自分から増やす道と、今あるやり取りを落ち着いて見守る道があります。前者は互いを知る機会になる一方、相手のペースを尊重する余白が必要です。後者は焦りを減らせる一方、想像だけを膨らませない工夫が要ります。相手の返事を試す行動ではなく、自分が納得できる関わり方を探しましょう。',question:'相手について実際に知っていることと、期待していることは何ですか。どこまでなら、結果にかかわらず無理なく関われそうでしょうか。'},
+ {label:'交際中・パートナーとの関係',text:'近い関係ほど、言わなくても分かってほしい気持ちが生まれるものです。でも、同じ出来事でも大切にしている点は違うかもしれません。「最近の一場面」を取り上げ、起きたこと、自分の受け止め方、望んでいることに分けてみましょう。相手を説得する前に、あなた自身の希望を明確にする時間を持ってもよいのです。',options:'落ち着いた時間に話し合う道と、まず自分の気持ちや境界を整理する道があります。前者では認識の違いを確かめられる一方、一度で答えが出るとは限りません。後者では伝えたいことが具体的になる一方、相手が自然に気づくとは限りません。安心して断ったり話を中断したりできる条件も考えてください。',question:'変えてほしい行動は具体的に何ですか。その希望と同じくらい、あなた自身が守りたい安心や境界は何でしょうか。'}
+ ],
+ work:[
+ {label:'今の職場・人間関係',text:'今の職場での悩みは、人との相性だけでなく、役割や情報の共有方法から生まれることもあります。気持ちが大きく動いた場面をひとつ選び、誰に何を頼まれ、何が分からず、どこで負担が増えたかを整理してみましょう。自分が工夫できる範囲と、組織として調整が必要な範囲を同じ重さで抱えなくてよいのです。',options:'期限や役割を具体的に確認する道と、状況を記録して相談先を探す道があります。前者は目の前の行き違いを減らせる一方、構造的な問題までは解決しないことがあります。後者は一人で抱えない助けになる一方、信頼できる窓口を確かめる必要があります。安全や健康を損なう負担を、自分の努力だけで埋めようとしないでください。',question:'困っているのは相手の言動、仕事量、役割の曖昧さのどれに近いですか。ひとつ条件が変わるなら、何がいちばん助けになりますか。'},
+ {label:'転職・働き方の見直し',text:'働き方を変えたいときは、今のつらさから離れたい気持ちと、次に手に入れたいものを分けてみましょう。収入、時間、場所、仕事内容、人との関わり。すべてを同時に満たす答えがすぐ見つからなくても構いません。譲れない条件を二つに絞ると、まだ判断に足りない情報が見えやすくなります。',options:'今の仕事を続けながら情報を集める道と、現職の条件を相談する道があります。前者では候補を比較できますが、生活の余力を保つ工夫が必要です。後者では変えられる範囲が分かりますが、希望がすべて通るとは限りません。大きく動く前に、生活費や時期、相談できる相手を現実の情報で確かめてください。',question:'次の仕事で必ず守りたい条件は何ですか。今の仕事でも変えられることと、環境を変えないと難しいことを分けられそうでしょうか。'},
+ {label:'評価・成長・新しい挑戦',text:'成長を望むときは、目立つ成果と、続けて身につく力の両方を見てみましょう。「もっとできるはず」という言葉だけでは、何を練習するか決めにくいものです。最近つまずいた作業をひとつ選び、知識が足りなかったのか、時間が足りなかったのか、基準が分からなかったのかを具体的にしてみてください。',options:'ひとつの力を小さく練習する道と、成果の基準を周囲に確認する道があります。前者は積み重ねを実感しやすい一方、評価の基準と一致するとは限りません。後者は期待を確かめられる一方、すぐ成果が見えるとは限りません。得意を伸ばすことと、苦手を補うことのどちらが今の役割に役立つかも考えましょう。',question:'何ができるようになれば、今より仕事が楽になりますか。他人の評価とは別に、自分で確かめられる成長の印は何でしょうか。'}
+ ],
+ money:[
+ {label:'日々の支出・家計',text:'家計を見直すとき、支出をすべて「減らすべきもの」と考えると続けにくくなります。暮らしを守るもの、楽しみにつながるもの、使っていないのに続いているものに分けてみましょう。金額の大小だけでなく、頻度と納得感を見ていくと、自分に合う見直しの入口が見つかるかもしれません。',options:'まず固定費を確認する道と、日々の支出を短期間だけ記録する道があります。前者は契約の見直しにつながる一方、解約条件や必要性の確認が要ります。後者は習慣を知る助けになる一方、細かく記録しすぎると負担になることがあります。生活の楽しみを一律に削る前に、手間と効果の釣り合いを考えてみましょう。',question:'残したい支出と、なくても困らない支出は何ですか。節約できた金額だけでなく、続けやすさをどう確かめますか。'},
+ {label:'貯蓄・これからの安心',text:'将来への備えを考えるとき、他人の貯蓄額はそのままあなたの目標にはなりません。生活費や収入の波、近いうちの予定を確かめ、何に備えたいのかを分けてみてください。不安をすべて一度に消そうとするより、見通しが立っていることと、まだ調べたいことを見つける方が取りかかりやすい場合があります。',options:'毎月の無理のない余白を確認する道と、近い将来の必要額を先に整理する道があります。前者は継続のしやすさを、後者は目的の具体性を考える助けになります。どちらも生活費を圧迫してまで進める必要はありません。占いで貯蓄額や投資先を決めず、収支や契約条件など確かめられる情報を基準にしてください。',question:'何が見通せると、お金への不安が少し小さくなりますか。そのために足りないのは金額の情報、支払いの予定、相談先のどれでしょうか。'},
+ {label:'買い物・お金の使い方',text:'欲しいものがあるとき、買うか我慢するかだけで考えなくても構いません。欲しくなったきっかけ、実際に使う場面、今あるもので代えられるかを分けてみてください。自分が楽しむためなのか、誰かと比べた焦りなのか。どちらの気持ちも責めずに見つめることで、納得できる基準を探せます。',options:'今の予算の中で買う道と、いったん待って必要性を確かめる道があります。前者はすぐ体験できる一方、ほかの支払いへの影響を確認する必要があります。後者は比較する余裕ができる一方、欲しかった機会を見送ることもあります。安さや期間限定の言葉だけでなく、使う頻度と支払える範囲を見て選んでください。',question:'それが手に入ると、日常の何が変わりますか。一週間待っても欲しい理由と、今決めたい理由は同じでしょうか。'}
+ ],
+ general:[
+ {label:'疲れ・心の余裕',text:'心の余裕が少ないときは、何を変えるかより、何を減らせるかから考えてもよいでしょう。体の疲れ、人に気を遣う疲れ、決め続ける疲れは、休み方が少し違うかもしれません。今の自分に必要なのが睡眠なのか、ひとりの時間なのか、誰かに聞いてもらうことなのかを分けてみてください。',options:'予定をひとつ減らす道と、頼めることをひとつ探す道があります。前者は時間をつくれる一方、気になる用事が残ることもあります。後者は負担を分けられる一方、頼み方を考える時間が必要です。どちらも「すべて自分でできてから」選ぶものではありません。今の力で使える支えを探して構いません。',question:'休んでも残る疲れは、どんな場面で強くなりますか。ひとつだけ負担を軽くできるなら、何を手放したいでしょうか。'},
+ {label:'人との距離・付き合い方',text:'人付き合いで迷うとき、相手を大切にしたい気持ちと、自分の時間を守りたい気持ちは同時にあっても構いません。会う頻度、連絡の時間、引き受ける役割のどこに負担があるか、具体的にしてみましょう。「関係を続けるか終えるか」の二択にする前に、距離を調整できる部分がないか見てみてください。',options:'自分の希望を短く伝える道と、まず会う頻度や引き受け方を調整する道があります。前者は意図を共有できますが、相手がすぐ理解するとは限りません。後者は無理の程度を確かめられますが、伝わらないまま誤解が残ることもあります。断ったときに尊重されるかという点も、安心できる関係を考える材料です。',question:'相手を大切にするために、無理をしていることは何ですか。距離を少し変えても残したい関わりは何でしょうか。'},
+ {label:'これからの方向・やりたいこと',text:'これからの方向が見えないとき、人生全体の答えを一度に探さなくても大丈夫です。気になること、避けたいこと、今のまま残したいことを分けてみましょう。はっきりした目標がなくても、日々の小さな違和感や好奇心は、次に確かめたいことを考える材料になります。',options:'気になることを一度試す道と、今の生活を整理して余白をつくる道があります。前者は実際の感触を知れますが、期待どおりとは限りません。後者は準備を整えられますが、考えるだけで時間が過ぎることもあります。大きな決断をする前に、費用と時間を限定した試し方がないか探してみてください。',question:'成功するかどうかを今は考えなくてよいなら、何を一度試したいですか。そのために守っておきたい暮らしの条件は何でしょうか。'}
+ ]
+};
+const perspectives=[
+ {label:'自分の本音を整理したい',text:'今は行動を増やす前に、出来事と感情を分けて見つめる視点を選びました。「起きたこと」「そのとき感じたこと」「本当は望んでいたこと」を別々に書いてみましょう。相反する気持ちが出てきても、どちらかを間違いにしなくて大丈夫です。すぐに答えを決めず、繰り返し現れる言葉がないか確かめてください。',question:'人に説明するための答えではなく、今の自分にだけ正直に言える言葉は何ですか。'},
+ {label:'選択肢を比べて考えたい',text:'今は正解をひとつ決めるより、選択肢を並べる視点を選びました。それぞれの「得られそうなこと」「気になる負担」「まだ分からないこと」を書いてみましょう。今すぐ決めずに保留する道も含めて構いません。怖さがあることだけを理由に避けず、期待があることだけを理由に急がず、確かめられる条件から比較してください。',question:'決める前にひとつだけ情報が増えるなら、何を知ると判断しやすくなりますか。'},
+ {label:'動く前に準備したい',text:'今は大きく動く決心より、安心して試せる準備をする視点を選びました。かけられる時間、使えるお金、頼れる相手、途中でやめる目安を考えてみてください。小さな試行は、成功を証明するためでなく自分に合うか確かめるためのものです。試して違うと分かった場合も、その経験を次の判断材料にして構いません。',question:'今週、負担を増やさず確かめられることは何ですか。続けるか見直すかを、何で判断しますか。'}
+];
+const detailForm=document.getElementById('reading-details');
+let selectedSituation='',selectedPerspective='',detailsTheme='';
+function renderOptions(containerId,name,items){
+ const container=document.getElementById(containerId);container.replaceChildren();
+ items.forEach((item,index)=>{
+  const label=document.createElement('label'),input=document.createElement('input'),span=document.createElement('span');
+  label.className='theme-option';input.type='radio';input.name=name;input.value=String(index);input.required=true;span.textContent=item.label;
+  label.append(input,span);container.append(label);
+ });
+}
+function showDetails(){
+ setup.hidden=true;selection.hidden=true;result.hidden=true;detailForm.hidden=false;currentCard=null;
+ if(detailsTheme!==selectedTheme){
+  renderOptions('situation-options','situation',situations[selectedTheme]);
+  renderOptions('perspective-options','perspective',perspectives);
+  selectedSituation='';selectedPerspective='';detailsTheme=selectedTheme;
+ }
+ document.getElementById('detail-context').textContent=contextLabel();
+ intro.textContent='答えを急がず、今の悩みに近いものを選んでください。';
+ document.getElementById('detail-heading').focus();
+}
+detailForm.addEventListener('submit',event=>{
+ event.preventDefault();if(!detailForm.reportValidity())return;
+ const data=new FormData(detailForm);selectedSituation=data.get('situation');selectedPerspective=data.get('perspective');
+ detailForm.hidden=true;selection.hidden=false;
+ document.getElementById('selection-context').textContent=`${contextLabel()} · ${situations[selectedTheme][selectedSituation].label}`;
+ document.getElementById('selection-perspective').textContent=perspectives[selectedPerspective].label;
+ intro.textContent='選んだ状況を心に置いて、惹かれる一枚を。';
  document.getElementById('selection-heading').focus();
+});
+document.getElementById('details-back').addEventListener('click',()=>reset(true));
+document.getElementById('reconsider').addEventListener('click',showDetails);
+
+setup.addEventListener('submit',event=>{
+ event.preventDefault();if(!setup.reportValidity())return;
+ selectedTheme=new FormData(setup).get('theme');selectedZodiac=zodiac.value;
+ showDetails();
 });
 function appendSection(label,text){
  const section=document.createElement('section'),heading=document.createElement('h3'),paragraph=document.createElement('p');
@@ -182,21 +254,28 @@ document.querySelectorAll('[data-card]').forEach(button=>button.addEventListener
  lastCard=button;currentCard=button.dataset.card;
  const message=readings[selectedTheme][currentCard];title.textContent=message[0];
  document.getElementById('reading').replaceChildren();
- appendSection('01 · 今、心に留めたいテーマ',message[1]);
- appendSection('02 · あなたへの読み解き',message[2]);
+ const situation=situations[selectedTheme][Number(selectedSituation)];
+ const perspective=perspectives[Number(selectedPerspective)];
+ document.getElementById('result-summary').textContent=`今回の相談：${situation.label} ／ ${perspective.label}`;
+ appendSection('01 · 今の状況から読み解く',situation.text);
+ appendSection('02 · カードが示すテーマ',message[1]);
+ appendSection('03 · 心に留めたいこと',message[2]);
+ appendSection('04 · 選択肢を比べるヒント',situation.options);
+ appendSection('05 · あなたが選んだ視点から',perspective.text);
  if(selectedZodiac!=='')appendSection(`${zodiacNames[Number(selectedZodiac)]}の象徴から`,zodiacHints[Number(selectedZodiac)]);
- appendSection('03 · 今夜できる、小さな行動',message[3]);
- updateAttribution();intro.textContent='急がず、心に残った言葉から受け取ってください。';
+ appendSection('06 · 試せそうな、小さな行動',message[3]);
+ appendSection('07 · 答えを急がず、問いかけてみる',situation.question+' '+perspective.question);
+ updateAttribution();intro.textContent='ひとつの結論ではなく、考えるための手がかりを。';
  selection.hidden=true;result.hidden=false;title.focus();
 }));
 function reset(home){
- result.hidden=true;currentCard=null;
+ result.hidden=true;detailForm.hidden=true;currentCard=null;
  if(home){selection.hidden=true;setup.hidden=false;intro.textContent='今、心にかかっていることを教えてください。';document.getElementById('setup-heading').focus();window.scrollTo({top:0,behavior:'instant'});}
  else{selection.hidden=false;intro.textContent='同じテーマで、もう一度カードを選んでください。';if(lastCard)lastCard.focus();}
 }
 document.getElementById('again').addEventListener('click',()=>reset(false));
 document.getElementById('home').addEventListener('click',()=>reset(true));
-document.getElementById('change-settings').addEventListener('click',()=>reset(true));
+document.getElementById('change-settings').addEventListener('click',showDetails);
 const portrait=document.getElementById('portrait');
 portrait.addEventListener('load',()=>{portrait.hidden=false;document.getElementById('placeholder').hidden=true;});
 portrait.addEventListener('error',()=>{portrait.hidden=true;document.getElementById('placeholder').hidden=false;});
