@@ -48,6 +48,9 @@ function runOracleSmoke(html){
  new Function('document','Option','window','localStorage','FormData',script)(document,Option,window,localStorage,FormData);
  check(!!get('quick-start').listeners.click,'quick button wired');
  get('quick-start').fire('click');
+ guides[1].fire('click');
+ check(get('quick-card-label').textContent.includes('れん'),'quick attribution follows guide switch');
+ guides[0].fire('click');
  check(get('quick-panel').hidden===false&&get('reading-setup').hidden===true,'quick-reading navigation');
  check(get('quick-title').textContent.length>2&&get('quick-action').textContent.length>5,'quick content');
  check(data.size===0,'no history without save');
@@ -75,6 +78,7 @@ function runOracleSmoke(html){
  check(get('journal').hidden===true,'history hidden while full reading');
  guides[1].fire('click');
  check(get('result').hidden===false&&get('result-label').textContent.includes('れん'),'guide switch keeps result');
+ check(get('memo-guide-name').textContent==='れん','consult label follows guide switch');
  get('again').fire('click');
  check(get('selection').hidden===false&&get('result').hidden===true,'retry flow');
  cards[1].fire('click');
