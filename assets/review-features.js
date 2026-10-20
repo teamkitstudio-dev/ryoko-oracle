@@ -18,6 +18,7 @@
     '.review-quick .action,.review-quick-panel .action{width:100%;margin-top:7px}',
     '.review-quick-panel img{width:118px;max-width:40%;border-radius:6px;display:block;margin:12px auto}',
     '.review-journal-list{padding-left:20px;overflow-wrap:anywhere;font-size:13px;color:#decda5}',
+    '.review-monthly{margin:16px 0;padding:16px 18px;text-align:left;border:1px solid #d6bc8057;border-radius:9px;background:#30243b}.review-monthly h3{font-size:17px;font-weight:400;color:#e9d6a3}.review-monthly p{font-size:13px;line-height:1.9}',
     '.review-journal-list li{margin:10px 0}',
     '.review-memo{width:100%;min-height:82px;padding:10px;background:#1a1426;color:#f3eada;border:1px solid #b49a66;border-radius:6px;font-size:16px;line-height:1.7}',
     '.review-memo-summary{border-left:2px solid #d6bc80;padding:10px 14px;margin:10px 0 22px;text-align:left;white-space:pre-wrap;overflow-wrap:anywhere;color:#e5d6ed;font-size:13px}',
@@ -57,6 +58,74 @@
   const savedStatus=document.createElement('p');
   savedStatus.id='review-save-status';savedStatus.className='review-status';
   finalActions.after(savedStatus);
+
+  const monthlyPanel=make('section','review-monthly','<h3>今月のテーマ</h3><p id="review-monthly-text"></p><p class="form-note">月とテーマに合わせたオリジナルの固定文です。未来の予測ではありません。</p>');
+  monthlyPanel.hidden=true;
+  memoDisplay.after(monthlyPanel);
+  function refreshMonthly(){
+    const messages=monthlyGuidance[selectedTheme];
+    const month=Number(tokyoDay().slice(5,7))-1;
+    monthlyPanel.hidden=!messages;
+    if(messages)document.getElementById('review-monthly-text').textContent=messages[month];
+  }
+  const monthlyGuidance={
+   love:[
+   '今月は、言葉にしきれていない希望を見つける時間。理想よりも、安心して話せる関係を思い描いて。',
+   '今月は、自分らしい距離感を大切に。連絡の回数より、話せたときの心地よさを見つめて。',
+   '今月は、小さな出会いや会話を丁寧に。大きな変化を求めなくてもいいのです。',
+   '今月は、気持ちを伝える方法を整える時間。相手を変える言葉より、自分の希望を伝える言葉を。',
+   '今月は、期待と事実を分けることを意識して。相手への想像に、自分を苦しめさせないで。',
+   '今月は、関係の心地よさを確かめる時間。あなたが無理をせず笑える場面を探して。',
+   '今月は、心の境界を守りながら近づくことを大切に。断ることも尊重の一部です。',
+   '今月は、一緒に楽しめることを思い出して。未来の答えを急がなくてもいいのです。',
+   '今月は、会話の中にある小さな違いを受け止める時間。すぐに一致しなくても大丈夫。',
+   '今月は、伝えたいことをひとつに絞って。気持ちの整理を先にしても構いません。',
+   '今月は、大切にしたい関係の形を見直して。寂しさと愛情を混ぜずに考えてみて。',
+   '今月は、今年心が温かくなった瞬間を振り返って。来月へ持っていきたいものを選んで。'
+   ],
+   work:[
+   '今月は、やることと抱え込まなくてよいことを整理して。役割の境界を見直す時間。',
+   '今月は、毎日の工夫に目を向けて。小さな改善を記録すると次の手が見えます。',
+   '今月は、学びたいことをひとつ選んで。全部を一度に変える必要はありません。',
+   '今月は、仕事の目的と手順を確認して。曖昧さを減らすことも前進です。',
+   '今月は、負担のかかり方を見直して。頑張り方だけでなく条件も大切に。',
+   '今月は、今ある強みを言葉にして。得意な作業の共通点を探してみて。',
+   '今月は、休息と挑戦のバランスを。無理のない配分を決めることから。',
+   '今月は、新しい方法を小さく試す時間。成果より、確かめたいことを先に決めて。',
+   '今月は、周囲と確認する機会を。期待される役割を言葉で合わせてみて。',
+   '今月は、続けたい工夫とやめたい習慣を分けて。日々の負担を少し軽く。',
+   '今月は、来年につながる経験を見直して。積み重ねたものを書き出してみて。',
+   '今月は、一区切りの時期。できたことを確かめ、次へ残す課題をひとつに。'
+   ],
+   money:[
+   '今月は、必要な支払いを把握する時間。大きな計画より、まず現状を見つめて。',
+   '今月は、続けている契約を点検して。見直すなら条件をよく確かめてから。',
+   '今月は、優先したい支出を考えて。減らすだけでなく残したいものも選んで。',
+   '今月は、身近な数字を整理して。心配を大きくする前に、分かることを増やして。',
+   '今月は、買い物の理由を見つめる時間。使う場面と予算を両方確かめて。',
+   '今月は、楽しみと備えの釣り合いを考えて。無理のない形が長続きの助けに。',
+   '今月は、慌てない買い物を意識して。迷うものはいったん保留でも構いません。',
+   '今月は、使っていないものや契約を確認して。管理しやすさも大切です。',
+   '今月は、先の支払予定をひとつ整理して。予算を知ることから安心をつくって。',
+   '今月は、必要と欲しいの区別をやさしく。どちらも責めず、順序を決めて。',
+   '今月は、一年間の支出の変化を振り返って。気づいたことを次の判断材料に。',
+   '今月は、年末の予定を確認して。気分や占いだけで大きな支出を決めないで。'
+   ],
+   general:[
+   '今月は、自分のペースを思い出して。始める前に、続けたい暮らしを確かめて。',
+   '今月は、人との関わり方を見つめて。心地よい距離にはあなたの基準があっていい。',
+   '今月は、小さな好奇心を大切に。できる範囲でひとつ試してみて。',
+   '今月は、変えることと守ることを分けて。全部を新しくする必要はありません。',
+   '今月は、心身の余白を見直して。後回しにしていた休息も予定に入れて。',
+   '今月は、他人の期待と自分の希望を整理して。どちらも同じとは限りません。',
+   '今月は、少し力を抜く練習を。すべてを完璧にこなさなくても大丈夫。',
+   '今月は、普段の生活にある心地よさを確認して。大きな出来事だけが大切ではありません。',
+   '今月は、学んだことを振り返って。今の自分に役立つものを一つ残して。',
+   '今月は、伝えたいことを短い言葉に。無理に説明し尽くさなくても構いません。',
+   '今月は、今年続けられたことを数えて。目立たない積み重ねにも目を向けて。',
+   '今月は、手放したい負担と持ち越したい希望を分けて。来月の余白をつくって。'
+   ]
+  };
 
   const KEY='ryoko-review-history-v1';
   function readHistory(){
@@ -124,9 +193,9 @@
     memoDisplay.hidden=!memo;
     memoDisplay.textContent=memo?'あなたが入力した相談メモ：'+memo:'';
   }
-  document.querySelectorAll('.cards button[data-card]').forEach(button=>button.addEventListener('click',renderMemo));
-  document.getElementById('journey-response').addEventListener('submit',renderMemo);
-  ['journey-back','card-back'].forEach(id=>document.getElementById(id).addEventListener('click',renderMemo));
+  document.querySelectorAll('.cards button[data-card]').forEach(button=>button.addEventListener('click',()=>{renderMemo();refreshMonthly();}));
+  document.getElementById('journey-response').addEventListener('submit',()=>{renderMemo();refreshMonthly();});
+  ['journey-back','card-back'].forEach(id=>document.getElementById(id).addEventListener('click',()=>{renderMemo();refreshMonthly();}));
   finalSave.addEventListener('click',()=>{
     if(draws.length!==3)return;
     saveRecord({date:tokyoDay(),theme:themes[selectedTheme],card:draws.map(id=>motifs[id]).join('・'),heading:document.getElementById('result-title').textContent,action:adviceFor(draws[2])},'review-save-status');
