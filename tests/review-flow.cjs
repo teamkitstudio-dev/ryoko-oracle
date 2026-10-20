@@ -20,6 +20,7 @@ const {chromium}=require('playwright');
       assert.equal(await page.locator('.cards [data-card]').count(),5);
     });
     await page.locator('#review-quick-start').click();
+    console.log('DEBUG quick',JSON.stringify(await page.evaluate(()=>({setupHidden:document.getElementById('reading-setup').hidden,panelHidden:document.getElementById('review-quick-panel').hidden,caption:document.getElementById('review-quick-caption').textContent}))),errors);
     await check('quick reading keeps 15-card source',async()=>{
       assert.equal(await page.locator('#reading-setup').isHidden(),true);
       assert.equal(await page.locator('#review-quick-panel').isVisible(),true);
