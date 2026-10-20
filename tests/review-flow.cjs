@@ -20,7 +20,6 @@ const {chromium}=require('playwright');
       assert.equal(await page.locator('.cards [data-card]').count(),5);
     });
     await page.locator('#review-quick-start').click();
-    console.log('DEBUG quick',JSON.stringify(await page.evaluate(()=>({setupHidden:document.getElementById('reading-setup').hidden,panelHidden:document.getElementById('review-quick-panel').hidden,caption:document.getElementById('review-quick-caption').textContent}))),errors);
     await check('quick reading keeps 15-card source',async()=>{
       assert.equal(await page.locator('#reading-setup').isHidden(),true);
       assert.equal(await page.locator('#review-quick-panel').isVisible(),true);
@@ -56,6 +55,8 @@ const {chromium}=require('playwright');
         assert.equal(await page.locator('#result').isVisible(),true);
         assert.ok((await page.locator('#review-memo-summary').textContent()).includes('<img src=x'));
         assert.equal(await page.locator('#review-memo-summary img').count(),0);
+        assert.equal(await page.locator('.review-monthly').isVisible(),true);
+        assert.ok((await page.locator('#review-monthly-text').textContent()).length>8);
       });
       if(i!==2){
         await page.locator('#journey-options input').first().check();
