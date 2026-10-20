@@ -5,3 +5,5 @@
 - `qr.png`：公開URL https://teamkitstudio-dev.github.io/ryoko-oracle/ のQRコード。
 
 人物画像の読み込み失敗時にはHTML内の月の代替表示を使用します。
+
+5枚のカードイラストも、このアプリ用に生成しています。`card-moon.webp`（月）、`card-star.webp`（星）、`card-key.webp`（鍵）、`card-rose.webp`（薔薇）、`card-mirror.webp`（鏡）。スマホでの通信量を抑えるため、WebP形式で収録しています。失敗時にはHTML内の線画を代替表示します。

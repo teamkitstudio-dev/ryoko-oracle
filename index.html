@@ -17,6 +17,24 @@ body[data-guide="ryoko"] .portrait:after{content:"";position:absolute;inset:0;po
 .guide-switch{display:flex;justify-content:center;gap:8px;margin:20px auto 0;flex-wrap:wrap}.guide-switch button{border:1px solid #a68a535e;border-radius:30px;color:#b5aabd;background:transparent;padding:9px 18px;min-height:44px;font-size:12px}.guide-switch button[aria-pressed="true"]{background:#d6bc80;color:#21182b;border-color:#d6bc80}
 
 :root{color-scheme:dark;--gold:#d6bc80;--muted:#b5aabd;--ink:#f3eada}*{box-sizing:border-box}body{margin:0;background:#100d18;color:var(--ink);font-family:"Yu Mincho","Hiragino Mincho ProN",serif;line-height:1.8;background-image:radial-gradient(ellipse at 50% 28%,#37234480,transparent 65%)}button{font:inherit;cursor:pointer}button:focus-visible{outline:2px solid #f5dba0;outline-offset:6px}[hidden]{display:none!important}.shell{max-width:1000px;margin:auto;padding:26px 24px 32px;text-align:center}.brand{display:flex;align-items:center;justify-content:center;gap:12px;color:var(--gold);font-size:13px;letter-spacing:.22em}.brand:before,.brand:after{content:"";height:1px;width:44px;background:#b79b5855}.portrait{position:relative;width:264px;height:350px;margin:30px auto 24px;border-radius:18px;border:1px solid #a58a575e;overflow:hidden;background:radial-gradient(ellipse at 50% 35%,#66517b55,transparent 70%),#1c142a;box-shadow:0 0 55px #a278c315}.portrait img{width:100%;height:100%;object-fit:contain;display:block}.placeholder{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:var(--gold)}.moon{font-size:76px;line-height:1;text-shadow:0 0 28px #d6bc8055}.placeholder small{font-size:10px;letter-spacing:.2em;color:#b6a6c3}.eyebrow{color:var(--gold);letter-spacing:.25em;font-size:10px;margin:0 0 12px}h1{font-size:clamp(23px,4.4vw,34px);font-weight:400;letter-spacing:.1em;line-height:1.65;margin:0 0 14px}.intro{color:var(--muted);font-size:13px;letter-spacing:.07em;margin:0}.divider{color:var(--gold);font-size:12px;margin:24px 0;display:flex;justify-content:center;align-items:center;gap:18px}.divider:before,.divider:after{content:"";width:64px;height:1px;background:#aa90513d}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;max-width:630px;margin:0 auto}.card{border:1px solid #b69a5c73;background:linear-gradient(145deg,#352341,#1a1426 70%);color:var(--gold);border-radius:70px 70px 6px 6px;padding:12px;min-width:0;aspect-ratio: .7;position:relative;transition:transform .25s,box-shadow .25s,border-color .25s}.card:before{content:"";position:absolute;inset:7px;border:1px solid #a68a5340;border-radius:64px 64px 3px 3px;pointer-events:none}.card:hover{transform:translateY(-5px);border-color:var(--gold);box-shadow:0 12px 32px #0005,0 0 22px #c6a06618}.card-inner{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center}.card svg{width:64px;height:76px;max-width:75%;fill:none;stroke:currentColor;stroke-width:1.15}.letter{font-size:19px;letter-spacing:.14em;margin-top:18px}.motif{font-size:10px;color:#b7a9c3;letter-spacing:.15em}.hint{font-size:11px;color:#95879f;margin:20px 0 0;letter-spacing:.1em}.result{max-width:560px;margin:0 auto;border:1px solid #ae925351;border-radius:8px;background:linear-gradient(145deg,#2b2037b0,#191321);padding:28px 30px}.result-label{color:var(--gold);font-size:12px;letter-spacing:.18em;margin:0 0 12px}.result h2{font-size:24px;font-weight:400;margin:0 0 18px;color:#e7d1a0}.reading{text-align:left;font-size:15px;line-height:2.25;letter-spacing:.06em;margin:0}.actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:26px}.action{border:1px solid #b49a66;border-radius:3px;padding:10px 22px;background:#d5bc80;color:#21182b;font-size:13px;min-height:44px}.action.secondary{background:transparent;color:var(--gold);border-color:#a68a535e}.action:hover{filter:brightness(1.12)}footer{border-top:1px solid #b3975d22;max-width:630px;margin:38px auto 0;padding-top:19px}footer p{color:#95879f;font-size:10px;line-height:1.9;margin:0 0 8px}footer .signature{color:#b59a65;letter-spacing:.18em;font-size:10px}noscript p{color:var(--gold)}@media(max-width:480px){.shell{padding:22px 20px 24px}.portrait{width:236px;height:314px;margin:25px auto 22px}.moon{font-size:60px}.placeholder small{font-size:8px}h1{font-size:23px;letter-spacing:.045em}.intro{font-size:12px}.cards{gap:10px}.card{padding:9px;aspect-ratio:.59;border-radius:55px 55px 5px 5px}.card:before{inset:5px;border-radius:50px 50px 3px 3px}.card svg{width:44px;height:58px}.letter{margin-top:12px;font-size:17px}.motif{font-size:9px;letter-spacing:.05em}.divider{margin:22px 0}.result{padding:24px 22px}.result h2{font-size:21px}.reading{font-size:14px}.actions{gap:10px}.action{padding:10px 16px}footer{margin-top:30px}}@media(prefers-reduced-motion:reduce){.card{transition:none}}
+
+/* Five richly illustrated cards. On small screens, three above and two centered below. */
+.cards{grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;max-width:870px;padding:8px 0 10px}
+.card{isolation:isolate;aspect-ratio:.61;padding:0;overflow:hidden;border-radius:12px;border:1px solid #cfb576b0;background:radial-gradient(ellipse at 50% 30%,#79539c,#201329 75%);box-shadow:0 8px 24px #0006,inset 0 0 0 3px #1a1020;transition:transform .25s,box-shadow .25s,border-color .25s}
+.card:before{inset:5px;border:1px solid #f0d49b85;border-radius:8px;z-index:3;pointer-events:none}
+.card:after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,#0805110a 30%,#10091922 48%,#100919e8 85%);pointer-events:none}
+.card-art{opacity:0;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0}
+.card-fallback{position:absolute;inset:0;display:grid;place-items:center;padding-bottom:35px;background:radial-gradient(circle at 50% 35%,#d2aa6030,transparent 48%)}
+.card-fallback svg{width:62%;height:55%;max-width:none;fill:none;stroke:#edce8e;stroke-width:1.2;filter:drop-shadow(0 0 12px #d6bc80aa)}
+.card.has-art .card-art{opacity:1}.card.has-art .card-fallback{visibility:hidden}.card-star{background-color:#122c41}.card-key{background-color:#40215a}.card-rose{background:radial-gradient(ellipse at 50% 30%,#9a3b66,#250f26 75%)}.card-mirror{background:radial-gradient(ellipse at 50% 30%,#285d62,#101e27 75%)}
+.card-ornament{position:absolute;top:10px;left:0;right:0;z-index:2;color:#ffe6b1;text-shadow:0 0 10px #c99c57;font-size:13px;line-height:1.2}
+.card-caption{position:absolute;bottom:14px;left:8px;right:8px;z-index:2;display:flex;flex-direction:column;align-items:center;text-shadow:0 2px 7px #000}
+.card-caption .letter{font-size:12px;letter-spacing:.22em;margin:0 0 3px;color:#ead3a0;line-height:1.4}.card-caption .motif{font-size:20px;letter-spacing:.16em;color:#f6e6c6;line-height:1.5}.card-english{font-size:8px;letter-spacing:.2em;color:#cdbb98;margin-top:3px;line-height:1.3}
+@media(hover:hover) and (pointer:fine){.card:hover{transform:translateY(-8px);border-color:#ffe2a7;box-shadow:0 16px 35px #0008,0 0 22px #d6bc8033}}
+@media(max-width:600px){.cards{grid-template-columns:repeat(6,minmax(0,1fr));gap:12px 10px;max-width:410px}.card{grid-column:span 2;aspect-ratio:.61;border-radius:10px}.card:nth-child(4){grid-column:2 / span 2}.card:nth-child(5){grid-column:4 / span 2}.card:before{inset:4px;border-radius:6px}.card-caption{bottom:11px}.card-caption .motif{font-size:19px}.card-caption .letter{font-size:10px}.card-english{font-size:7px}.card-ornament{top:9px;font-size:11px}}
+@media(prefers-reduced-motion:reduce){.card{transition:none}}
+
+.daily-entry{margin:18px 0 0}.daily-entry .action{width:100%}.daily-result{margin:24px 0;padding:22px 18px;border:1px solid #c9aa6680;border-radius:10px;background:radial-gradient(ellipse at top,#6c427331,transparent 70%),#191321;overflow-wrap:anywhere}.daily-result time{font-size:12px;color:#c3b39a}.daily-result h3{font-size:22px;font-weight:400;line-height:1.7;color:#e8c98c;margin:14px 0}.daily-result>p:not(.step-label):not(.form-note){font-size:14px;line-height:2}.daily-details{margin:22px 0;font-size:13px;line-height:2}.daily-details dt{color:#dfc080;margin:16px 0 5px}.daily-details dd{margin:0;color:#d5cbdc}.daily-lucky{border-top:1px solid #b3975d33;padding-top:6px}.daily-lucky p{font-size:11px;color:#b6a8c1;margin:14px 0}.daily-lucky span{display:block;font-size:14px;color:#e8d4ac;margin-top:4px}.deep-entry{border-top:1px solid #a68a5340;padding-top:26px;margin-top:26px}#daily-title:focus{outline:none}
 </style>
 </head>
 <body data-guide="ryoko">
@@ -36,19 +54,29 @@ body[data-guide="ryoko"] .portrait:after{content:"";position:absolute;inset:0;po
 <div class="divider" aria-hidden="true">✧</div>
 <form id="reading-setup" class="reading-setup" autocomplete="off">
 <p class="step-label">STEP 01 · あなたの今を選ぶ</p>
-<h2 id="setup-heading" tabindex="-1">今夜、何を占いましょうか</h2>
-<fieldset><legend>占いたいテーマ</legend><div class="theme-options">
+<h2 id="setup-heading" tabindex="-1">今日の運勢と、あなたの相談</h2>
+
+<div class="profile-grid"><div><label class="field-label" for="birthday">生年月日<span class="optional">任意</span></label><input type="date" id="birthday" aria-describedby="profile-note privacy-note"></div>
+<div><label class="field-label" for="zodiac">星座<span class="optional">任意</span></label><select id="zodiac" aria-describedby="profile-note"><option value="">指定しない</option></select></div></div>
+<p id="profile-note" class="form-note">生年月日から星座を自動選択します。星座だけ選んでも、入力なしでも占えます。星座を手動で変えると生年月日は消去されます。一般的な日付区分のため、境界日の方は星座を手動でお選びください。</p>
+<p id="privacy-note" class="form-note">生年月日はこの端末内で星座と今日の運勢を求めるためだけに使用し、保存・送信しません。</p>
+<div class="daily-entry"><p class="form-note">生年月日を入力すると、日本時間の日付に合わせた今日の運勢も見られます。</p><button class="action" id="show-daily" type="button">今日の運勢を見る</button><p class="form-note" id="daily-status" role="status" aria-live="polite"></p></div>
+<section id="daily-result" class="daily-result" aria-labelledby="daily-title" hidden>
+<p class="step-label">YOUR DAILY MESSAGE</p><time id="daily-date"></time>
+<h3 id="daily-title" tabindex="-1"></h3>
+<p id="daily-overall"></p>
+<dl class="daily-details"><dt>恋愛</dt><dd id="daily-love"></dd><dt>仕事</dt><dd id="daily-work"></dd><dt>金運</dt><dd id="daily-money"></dd></dl>
+<div class="daily-lucky"><p>ラッキーカラー<span id="daily-color"></span></p><p>今日の小さな行動<span id="daily-action"></span></p></div>
+<p class="form-note">日本時間の午前0時に切り替わります。生年月日と日付に応じた固定文の組み合わせで、未来を保証するものではありません。</p>
+</section>
+<div class="deep-entry"><p class="step-label">気になることを、もっと深く</p><fieldset><legend>占いたいテーマ</legend><div class="theme-options">
 <label class="theme-option"><input type="radio" name="theme" value="love" checked><span>恋愛</span></label>
 <label class="theme-option"><input type="radio" name="theme" value="work"><span>仕事</span></label>
 <label class="theme-option"><input type="radio" name="theme" value="money"><span>金運</span></label>
 <label class="theme-option"><input type="radio" name="theme" value="general"><span>総合</span></label>
-</div></fieldset>
-<div class="profile-grid"><div><label class="field-label" for="birthday">生年月日<span class="optional">任意</span></label><input type="date" id="birthday" aria-describedby="profile-note privacy-note"></div>
-<div><label class="field-label" for="zodiac">星座<span class="optional">任意</span></label><select id="zodiac" aria-describedby="profile-note"><option value="">指定しない</option></select></div></div>
-<p id="profile-note" class="form-note">生年月日から星座を自動選択します。星座だけ選んでも、入力なしでも占えます。星座を手動で変えると生年月日は消去されます。一般的な日付区分のため、境界日の方は星座を手動でお選びください。</p>
-<p id="privacy-note" class="form-note">生年月日はこの端末内で星座を求めるためだけに使用し、保存・送信しません。</p>
+</div></fieldset></div>
 <button class="action start-reading" type="submit">状況を詳しく選ぶ <span aria-hidden="true">→</span></button>
-<p class="form-note">3枚のカードと途中の問いかけで、少しずつ相談を掘り下げます。同じカードを続けて選んでも大丈夫です。内容は選択に応じた固定文です。出生時刻や出生地を使う精密な星図鑑定ではありません。</p>
+<p class="form-note">各回5枚から1枚ずつ、合計3枚を選び、途中の問いかけで、少しずつ相談を掘り下げます。同じカードを続けて選んでも大丈夫です。内容は選択に応じた固定文です。出生時刻や出生地を使う精密な星図鑑定ではありません。</p>
 </form>
 <form id="reading-details" class="reading-setup" autocomplete="off" hidden>
 <p class="step-label">STEP 02 · 悩みをもう少し深く</p>
@@ -61,17 +89,44 @@ body[data-guide="ryoko"] .portrait:after{content:"";position:absolute;inset:0;po
 <button type="button" class="change-settings" id="details-back">テーマ・星座の選択に戻る</button>
 </form>
 <ol class="journey-progress" id="journey-progress" aria-label="3枚のリーディングの進行状況" hidden><li>1 · 今のあなた</li><li>2 · 気持ちの奥</li><li>3 · 次の一歩</li></ol>
-<section id="selection" aria-label="3枚のカードから選ぶ" hidden>
+<section id="selection" aria-label="5枚のカードから1枚を選ぶ" hidden>
 <p class="step-label" id="card-stage-label">3枚のリーディング · 1 / 3</p>
 <h2 class="selection-heading" id="selection-heading" tabindex="-1">あなたが惹かれる一枚は？</h2>
 <p class="selection-context" id="selection-context"></p>
 <p class="selection-perspective" id="selection-perspective"></p>
 <div class="cards">
-<button class="card" type="button" data-card="A" aria-label="カードA、月を選ぶ"><span class="card-inner"><svg viewBox="0 0 64 76" aria-hidden="true"><path d="M44 12a26 26 0 1 0 9 43A27 27 0 0 1 44 12Z"/><path d="m48 23 2 5 5 2-5 2-2 5-2-5-5-2 5-2Z"/><circle cx="20" cy="62" r="1"/></svg><span class="letter">A</span><span class="motif">月 — MOON</span></span></button>
-<button class="card" type="button" data-card="B" aria-label="カードB、星を選ぶ"><span class="card-inner"><svg viewBox="0 0 64 76" aria-hidden="true"><path d="m32 10 6 20 20 8-20 7-6 21-6-21-20-7 20-8Z"/><path d="m32 23 3 12 10 3-10 3-3 12-3-12-10-3 10-3Z"/><path d="M9 14v8M5 18h8M52 55v8M48 59h8"/></svg><span class="letter">B</span><span class="motif">星 — STAR</span></span></button>
-<button class="card" type="button" data-card="C" aria-label="カードC、鍵を選ぶ"><span class="card-inner"><svg viewBox="0 0 64 76" aria-hidden="true"><circle cx="32" cy="23" r="13"/><circle cx="32" cy="23" r="6"/><path d="M29 36v29h6V54h10v-7H35V36M25 65h14"/><path d="M9 39v6M6 42h6M51 14v6M48 17h6"/></svg><span class="letter">C</span><span class="motif">鍵 — KEY</span></span></button>
+<button class="card card-moon" type="button" data-card="A" aria-label="カードA、月を選ぶ">
+<img class="card-art" src="assets/card-moon.webp" alt="" decoding="async" loading="lazy">
+<span class="card-fallback" aria-hidden="true"><svg viewBox="0 0 64 76"><path d="M43 13a25 25 0 1 0 9 43A26 26 0 0 1 43 13Z"/><path d="m48 24 2 5 5 2-5 2-2 5-2-5-5-2 5-2Z"/></svg></span>
+<span class="card-ornament" aria-hidden="true">✦</span>
+<span class="card-caption"><span class="letter">A</span><span class="motif">月</span><span class="card-english">MOON</span></span>
+</button>
+<button class="card card-star" type="button" data-card="B" aria-label="カードB、星を選ぶ">
+<img class="card-art" src="assets/card-star.webp" alt="" decoding="async" loading="lazy">
+<span class="card-fallback" aria-hidden="true"><svg viewBox="0 0 64 76"><path d="m32 10 6 20 20 8-20 7-6 21-6-21-20-7 20-8Z"/><path d="m32 23 3 12 10 3-10 3-3 12-3-12-10-3 10-3Z"/></svg></span>
+<span class="card-ornament" aria-hidden="true">✦</span>
+<span class="card-caption"><span class="letter">B</span><span class="motif">星</span><span class="card-english">STAR</span></span>
+</button>
+<button class="card card-key" type="button" data-card="C" aria-label="カードC、鍵を選ぶ">
+<img class="card-art" src="assets/card-key.webp" alt="" decoding="async" loading="lazy">
+<span class="card-fallback" aria-hidden="true"><svg viewBox="0 0 64 76"><circle cx="32" cy="23" r="13"/><circle cx="32" cy="23" r="6"/><path d="M29 36v29h6V54h10v-7H35V36M25 65h14"/></svg></span>
+<span class="card-ornament" aria-hidden="true">✦</span>
+<span class="card-caption"><span class="letter">C</span><span class="motif">鍵</span><span class="card-english">KEY</span></span>
+</button>
+<button class="card card-rose" type="button" data-card="D" aria-label="カードD、薔薇を選ぶ">
+<img class="card-art" src="assets/card-rose.webp" alt="" decoding="async" loading="lazy">
+<span class="card-fallback" aria-hidden="true"><svg viewBox="0 0 64 76"><path d="M32 38C10 38 9 18 24 17c1-12 17-12 19 0 15 0 15 20-11 21Zm0 0v28m0-15C19 39 16 48 20 52c4 4 9 4 12 3m0 4c12-16 21-12 16-5-4 6-11 8-16 8"/><path d="M23 21c0 13 18 15 19-1m-14-4c-2 10 8 12 11 4"/></svg></span>
+<span class="card-ornament" aria-hidden="true">✦</span>
+<span class="card-caption"><span class="letter">D</span><span class="motif">薔薇</span><span class="card-english">ROSE</span></span>
+</button>
+<button class="card card-mirror" type="button" data-card="E" aria-label="カードE、鏡を選ぶ">
+<img class="card-art" src="assets/card-mirror.webp" alt="" decoding="async" loading="lazy">
+<span class="card-fallback" aria-hidden="true"><svg viewBox="0 0 64 76"><ellipse cx="32" cy="27" rx="19" ry="23"/><ellipse cx="32" cy="27" rx="14" ry="18"/><path d="M28 50v19h8V50M25 69h14m-16-43 13-13m-9 26 14-14"/></svg></span>
+<span class="card-ornament" aria-hidden="true">✦</span>
+<span class="card-caption"><span class="letter">E</span><span class="motif">鏡</span><span class="card-english">MIRROR</span></span>
+</button>
 </div>
-<p class="hint">正解はありません。あなたの直感を大切に。</p>
+<p class="hint">5枚の中から、今いちばん心が惹かれるものを。</p>
 <button type="button" class="change-settings" id="card-back" hidden>前の読み解きに戻る</button>
 <button type="button" class="change-settings" id="change-settings">状況・知りたいことを変更する</button>
 </section>
@@ -95,7 +150,7 @@ body[data-guide="ryoko"] .portrait:after{content:"";position:absolute;inset:0;po
 'use strict';
 // テーマ・カード・星座の組み合わせで固定文を表示。生年月日は送信・保存しない。
 const themes = {love:'恋愛',work:'仕事',money:'金運',general:'総合'};
-const motifs = {A:'月',B:'星',C:'鍵'};
+const motifs = {A:'月',B:'星',C:'鍵',D:'薔薇',E:'鏡'};
 const readings = {
 love:{
  A:['本音を、静かな場所で見つめる',
@@ -154,6 +209,50 @@ general:{
  '後回しにしていたことをひとつ選び、五分でできる最初の動作に分けてみましょう。調べる言葉をメモする、道具を机に出す、相談したいことを一行書く。終わったら、次まで続けるかは改めて決めてよいのです。他人の速さを基準にせず、自分が納得できる小さな選択を重ねることを、今夜の提案として受け取ってください。']
 }
 };
+const extraReadings={
+ love:{
+  D:['優しさを、自分にも向けて',
+   '薔薇のカードは、誰かを大切にする気持ちと、自分をいたわる気持ちの両方を象徴しています。相手が喜ぶことばかり考えて、あなたの願いが小さくなっていませんか。愛情を示すことと、無理な頼みを引き受けることは分けて考えてよいのです。心地よく差し出せる優しさの範囲を見つめてみましょう。',
+   '尽くした分だけ同じ形で返ってきてほしいと感じることはありませんか。その願いを責めずに、どんな言葉や行動があると安心するのか具体的にしてみましょう。相手に求めることと、自分で満たせることを分けると、関係のすべてを相手の反応に預けずに済む場合があります。自分の楽しみや休息も大切にしてください。',
+   '今夜は「してあげたいこと」と「してもらえると嬉しいこと」を一つずつ書いてみましょう。どちらも小さなことで構いません。伝えるなら、見返りを試す言葉ではなく、あなたの希望として短く。まだ伝えにくいときは、自分のために心地よい時間を一つ用意してみてください。優しさを一方通行にしない工夫を探しましょう。'],
+  E:['映っているのは、事実と願い',
+   '鏡のカードは、相手を見つめるまなざしの中に、自分の願いや不安も映っていると気づくための象徴です。同じ短い返事でも、気分によって違って感じることがあります。受け取った言葉と、そこから想像した意味をいったん分けてみましょう。カードが相手の本心を明かすわけではありません。',
+   '「きっとこう思われている」と決めたくなるときは、その根拠となる出来事と、別の見方ができる可能性を並べてみてください。一方で、繰り返される不快な行動まで気のせいにする必要はありません。あなたがどう扱われているかと、その関係で安心できるかを、どちらも確かめることが大切です。',
+   '気になるやり取りを一つだけ思い出し、「実際の言葉」「私の解釈」「確かめたいこと」に分けて書いてみましょう。必要なら、相手を試す聞き方ではなく、分からなかった点をそのまま質問する方法もあります。今日、結論が出なくても構いません。自分の解釈に気づけたことを、次に考える材料にしてください。']
+ },
+ work:{
+  D:['一人で咲こうと、しすぎないで',
+   '薔薇のカードは、成果を支える関係や環境へ目を向ける象徴です。一人でやり切ることだけを、仕事の価値にしていませんか。相談する、作業を分ける、助けてもらった点を伝える。そうした関わりも、仕事を続けるための力になります。今のあなたが頼れそうな人や仕組みを思い出してみましょう。',
+   '周囲に気を配る人ほど、頼まれる仕事が増えても断りにくいことがあります。役に立てることと、引き受ける余力があることは別です。協力したい気持ちはそのままに、期限や優先順位を相談できるか考えてみてください。助けを求めることと、役割を放棄することを同じにしなくてよいのです。',
+   '明日、一つだけ誰かに確認できることをメモしてみましょう。「この順番で進めてよいか」「どこまで仕上げれば十分か」といった具体的な問いが入口になります。協力してもらえたら、何が助かったかも一言にしてみてください。頑張る量を増やす以外にも、働きやすさを整える方法を探してみましょう。'],
+  E:['期待と事実を、分けて見る',
+   '鏡のカードは、仕事に対する評価や思い込みを確かめ直す象徴です。周りが求めている完成度と、あなたが自分に課している基準は同じでしょうか。「ここまでしなければ」と感じるとき、その条件が実際に示されたものかを振り返ってみてください。想像の期待を一人で背負っている場合もあります。',
+   'うまくいかなかった仕事を、能力全体の評価に広げていないかも見てみましょう。準備の時間、説明の分かりやすさ、必要な情報の有無など、結果に影響した条件を分けて考える余地があります。よかった点も同じ細かさで拾うと、次に再現したい工夫と、相談したい問題を見つけやすくなります。',
+   '最近の仕事を一件選び、実際に求められたこと、自分で上乗せしたこと、次回確認したいことを一行ずつ書いてみてください。不明な基準があれば、次の作業前に質問する準備を。自分を厳しく採点するためでなく、事実に基づいて仕事の進め方を調整する時間にしてみましょう。']
+ },
+ money:{
+  D:['満たされる使い方を、育てる',
+   '薔薇のカードは、金額だけでは測れない暮らしの満足へ目を向ける象徴です。お金を使うことをすべて悪いことにすると、楽しみも息苦しくなるかもしれません。生活を守る支出を確かめたうえで、何に使うと心地よさが続くのかを振り返ってみましょう。無理なく続けられる範囲を大切にしてください。',
+   '人に喜んでほしくて使うお金と、自分が楽しむためのお金は、どちらもあってよいものです。ただ、断りづらさや見栄が支出を増やしていないかは確認してみましょう。気持ちを伝える方法は、買い物や贈り物だけではありません。金額を増やす以外にできることも並べて考えてみてください。',
+   '最近の支出から「使ってよかった」と感じるものを一つ選び、理由を書いてみましょう。その理由を、これからの買い物の基準にしてみてください。誰かへの支出なら、自分の予算も守れているかを一緒に確認します。お金が増える予告ではなく、納得できる使い方を育てるヒントとして受け取ってください。'],
+  E:['見える数字から、安心をつくる',
+   '鏡のカードは、お金についての印象と、実際の数字を照らし合わせる象徴です。「使いすぎた気がする」「何となく足りない」と感じるとき、まず一つだけ数字を確かめてみませんか。全体を一度に把握しなくても構いません。分かっていることと、まだ分からないことを分けるところから始められます。',
+   '他人の収入や暮らしの一部分を見ると、自分だけ遅れているように感じることもあります。でも、その人の支出や事情まで分かるわけではありません。比較するなら、過去の自分の収支や納得感を手がかりに。金融商品や契約を考える場合は、印象的な宣伝より正式な条件やリスクを確認してください。',
+   '次の支払日、利用していない契約、今月の予算のいずれかを一つだけ確認してみましょう。分からない項目は、推測で埋めず「調べたいこと」としてメモします。占いを理由に投資や借入を決めず、実際の数字と契約条件から判断する余地を残してください。見通しを一つ増やすことを今夜の小さな行動にしましょう。']
+ },
+ general:{
+  D:['あなたの心にも、水をあげる',
+   '薔薇のカードは、日々をこなすだけでなく、自分をいたわる余白を育てる象徴です。誰かのためには時間を使えても、自分の喜びは後回しになっていませんか。立派な趣味や成果になることでなくても構いません。好きな香り、温かい飲み物、静かな音楽など、小さく心が緩むものを思い出してみましょう。',
+   '人とつながる時間と、一人で整える時間の釣り合いも見てみてください。孤独に感じるから予定を増やす、疲れるからすべて避けるという二択にしなくてよいのです。短い会話だけする、安心できる人に近況を伝えるなど、今の余力で心地よい関わり方を探せるかもしれません。',
+   '明日、自分のためだけに十分使えるなら何をしたいか、一つ決めてみましょう。買い物や特別な準備が必要ないものからでも十分です。終わった後に少し楽になったか、逆に疲れたかを確かめてみてください。何が自分を支えるかを知ることも、これからの選択を助ける小さな積み重ねになります。'],
+  E:['いつもの自分を、別の角度から',
+   '鏡のカードは、自分について決めつけている言葉を、少し離れて見つめ直す象徴です。「私はいつもこうだから」と考えると、試せることまで狭く感じる場合があります。その言葉は、今もすべての場面に当てはまるでしょうか。うまくできた小さな例や、以前と変わったところも探してみてください。',
+   '人から期待される自分と、実際に心地よい自分が違っていても構いません。得意だから好きとは限らず、苦手だから避けたいとも限りません。役割や評価から少し離れて、興味があることと負担になることを別々に並べてみると、今のあなたに合う選び方を考えやすくなるかもしれません。',
+   '自分に向けてよく使う言葉を一つ書き、それと違う経験が一度もなかったか思い出してみましょう。大きな成功でなくて大丈夫です。次に、今の自分が試せそうなことを一つ添えてみてください。性格を変える約束ではなく、自分を見る角度を増やすための小さなメモにしてみましょう。']
+ }
+};
+for(const theme of Object.keys(extraReadings))Object.assign(readings[theme],extraReadings[theme]);
+
 const zodiacNames=['やぎ座','みずがめ座','うお座','おひつじ座','おうし座','ふたご座','かに座','しし座','おとめ座','てんびん座','さそり座','いて座'];
 const zodiacHints=[
  '積み重ねを象徴するやぎ座。今回のテーマでも、すぐに結果を求めるより、無理なく続けられる形を考える視点を添えてみてください。',
@@ -176,7 +275,7 @@ const intro=document.getElementById('intro');
 const title=document.getElementById('result-title');
 const birth=document.getElementById('birthday');
 const zodiac=document.getElementById('zodiac');
-const now=new Date();birth.max=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+birth.max=tokyoDay();
 zodiacNames.forEach((name,index)=>zodiac.add(new Option(name,String(index))));
 // 太陽星座の一般的な日付区分。出生時刻・出生地を用いるホロスコープ計算ではない。
 function zodiacFromDate(value){
@@ -246,6 +345,8 @@ const approaches={
  general:[{label:'気になっていたことを、小さく試したい',text:'準備が少なく、五分程度で試せることを一つ選んでみましょう。続ける約束を先にせず、実際にしてみて楽しいか、疲れるかを、その後に確かめるだけでも構いません。',question:'今週、自分の暮らしを崩さずに一度だけ試せることは何でしょうか。'}, {label:'自分の望みや、必要な情報を整理したい',text:'やりたいこと、やった方がよいと思うこと、人に期待されていることを別々に書いてみましょう。自分の言葉が見つからないときは、今は避けたいことから考えても大丈夫です。',question:'他人の期待をいったん脇に置くと、残しておきたい希望は何でしょうか。'}, {label:'予定を減らして、心と体を休めたい',text:'急がなくてもよい予定を一つ見つけ、空いた時間を埋めずに過ごしてみましょう。自分で減らしにくい負担は、頼れる人に話すことも選択肢です。休んだ後の気持ちを見て、次を考えてよいのです。',question:'何を一つ減らせると、明日の自分が少し楽になりそうですか。'}]
 };
 const cardAdvice={A:'月の一枚は、急いで動く前に一晩置いて自分の気持ちを確かめる視点を添えています。気持ちが落ち着く時間を、予定の中に残してみましょう。',B:'星の一枚は、一人で完結させず、頼れる情報や小さな楽しみを探す視点を添えています。誰かの経験を聞く場合も、それをそのままあなたの正解にしなくて構いません。',C:'鍵の一枚は、自分で選べる小さな範囲を明らかにする視点を添えています。使う時間や負担の上限、いったんやめる目安も決めてから試してみましょう。'};
+cardAdvice.D='薔薇の一枚は、自分や周りを大切にしながら、無理なく育てられることを探す視点を添えています。優しさを示すことと、負担を引き受けすぎることを分けて考えてみましょう。';
+cardAdvice.E='鏡の一枚は、印象と事実を分け、いつもの見方を確かめ直す視点を添えています。気になることを一つ書き、別の見方や確かめられる情報がないか探してみましょう。';
 const detailForm=document.getElementById('reading-details');
 const journeyForm=document.getElementById('journey-response');
 let selectedSituation='',selectedPerspective='',detailsTheme='',detailsSituation='';
@@ -381,6 +482,81 @@ document.getElementById('reconsider').addEventListener('click',showDetails);
 document.getElementById('again').addEventListener('click',()=>reset(false));
 document.getElementById('home').addEventListener('click',()=>reset(true));
 document.getElementById('change-settings').addEventListener('click',showDetails);
+const dailyTexts={
+ titles:['小さな余白をつくる日','心地よい会話を大切にする日','身の回りを整える日','好奇心に耳を澄ませる日','自分の歩幅を確かめる日','感謝を言葉にする日','いつもの見方を変えてみる日','一つのことを丁寧に進める日'],
+ overall:[
+ '今日のヒントは、予定を埋めるより余白を残すこと。急がなくてよいことを一つ選び、今の気持ちに耳を澄ませてみてください。小さな休憩も、一日を整えるための選択になります。',
+ '今日のヒントは、やり取りの中の小さな温かさを見つけること。長い説明を用意するより、感謝や近況を短く伝えてみてもよいでしょう。相手の反応を急がず、自分の心地よさも大切に。',
+ '今日のヒントは、気になっていた場所を一つ整えること。机の上や予定表など、すぐ見渡せる範囲で十分です。すべてを片づけるより、一つ楽になったことに目を向けてみましょう。',
+ '今日のヒントは、気になることを小さく試すこと。うまくできるかを先に決めず、本を数ページ読む、知らない道を少し歩くなど、無理のない体験を選んでみてください。',
+ '今日のヒントは、人と比べる前に自分の余力を確かめること。できる量が昨日と違っても構いません。今の力で取り組めることを一つ選び、終わったところでひと息つきましょう。',
+ '今日のヒントは、普段は言いそびれる感謝を一つ言葉にすること。誰かに助けられたことだけでなく、自分が続けてきた小さな工夫にも目を向けてみてください。',
+ '今日のヒントは、思い込みに別の見方を添えること。「いつもこうだから」と思ったとき、例外だった場面を一つ探してみましょう。結論を変えなくても、考える余地を残してよいのです。',
+ '今日のヒントは、一度に全部を進めようとしないこと。今いちばん気になることを短い作業に分け、一つずつ確かめてみてください。途中まで進んだことも、そのまま数えて大丈夫です。'
+ ],
+ love:[
+ '恋愛では、自分が安心できる距離を確かめてみましょう。相手の短い返事だけで気持ちを決めつけず、実際の言葉と自分の想像を分ける時間を。',
+ '恋愛では、素直に共有できる話題を一つ。返事を試す質問より、最近よかったことを短く伝える方法もあります。相手のペースも大切にしてください。',
+ '恋愛では、してほしいことを具体的に考えてみましょう。「もっと大切に」より、どんな場面で何があると嬉しいかを言葉にすると整理しやすくなります。',
+ '恋愛では、自分の楽しみを後回しにしすぎないこと。誰かを思う時間と、自分のための時間を両方持てる関わり方を考えてみてください。',
+ '恋愛では、急いで答えを出さずに小さなやり取りを見てみましょう。約束を尊重し合えるか、自分らしく話せるかも関係を考える手がかりです。',
+ '恋愛では、感謝と希望を分けて伝える工夫を。「ありがとう」と「次はこうできると嬉しい」を、相手を責めずに一つずつ言葉にしてみましょう。'
+ ],
+ work:[
+ '仕事では、最初の十五分でできる作業を一つ決めてみてください。完成までの大きさではなく、取りかかりやすさを基準にする方法もあります。',
+ '仕事では、曖昧な依頼を一つだけ確認してみましょう。期限や必要な完成度が分かると、余計な上乗せをせずに進めやすくなる場合があります。',
+ '仕事では、自分でできることと相談が必要なことを分けてみてください。すべてを一人で抱えることだけが、責任を果たす方法ではありません。',
+ '仕事では、最近うまくいった工夫を一つ思い出してみましょう。何が役立ったかを短く残すと、次の仕事で再び使う手がかりになります。',
+ '仕事では、切り替えの時間を予定に入れてみてください。忙しさで休憩を消すより、短く区切って集中と回復の釣り合いを考えてみましょう。',
+ '仕事では、始める前に優先順位を見直してみましょう。急ぎに見えることと、今日進める必要があることが同じか、一度確かめてみてください。'
+ ],
+ money:[
+ '金運のヒントは、使っていない支出を一つ確認すること。すぐに解約を決めず、利用状況や条件を調べるところまででも十分です。',
+ '金運のヒントは、欲しいものを一晩置いて考えること。値段だけでなく、実際に使う場面と予算への影響を見てみてください。',
+ '金運のヒントは、払ってよかったものを一つ振り返ること。その理由を言葉にすると、これからのお金の使い方の基準になります。',
+ '金運のヒントは、次の支払日を一つ確認すること。曖昧な不安を数字と予定に分け、分からない項目は正式な案内で確かめましょう。',
+ '金運のヒントは、小さな楽しみをすべて削らないこと。生活を守る支出を確認したうえで、無理なく続く使い方を考えてみてください。',
+ '金運のヒントは、人の暮らしとの比較を少し休むこと。収入や利益の予告ではありません。判断は自分の収支と契約条件を基準にしてください。'
+ ],
+ colors:['シャンパンゴールド','深紫','ミッドナイトブルー','ローズベージュ','アイボリー','ボルドー','フォレストグリーン','シルバー'],
+ actions:['温かい飲み物で、ひと息つく','予定を一つだけ見直す','気になった言葉をメモする','机の上を一か所だけ整える','感謝を一言だけ伝える','五分間、窓の外や空を眺める','気になる本を数ページだけ読む','できたことを一つ書き留める']
+};
+function tokyoDay(date=new Date()){
+ const parts=Object.fromEntries(new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(date).map(p=>[p.type,p.value]));
+ return `${parts.year}-${parts.month}-${parts.day}`;
+}
+function dailyFortune(birthday,day){
+ let seed=2166136261;
+ for(const char of birthday)seed=Math.imul(seed^char.charCodeAt(0),16777619)>>>0;
+ const dayNumber=Math.floor(Date.parse(day+'T00:00:00Z')/86400000);
+ const pick=(list,shift)=>list[(dayNumber+(seed>>>shift))%list.length];
+ const index=(dayNumber+(seed>>>0))%dailyTexts.titles.length;
+ return {title:dailyTexts.titles[index],overall:dailyTexts.overall[index],love:pick(dailyTexts.love,3),work:pick(dailyTexts.work,8),money:pick(dailyTexts.money,14),color:pick(dailyTexts.colors,20),action:pick(dailyTexts.actions,24)};
+}
+const dailyPanel=document.getElementById('daily-result');
+const dailyStatus=document.getElementById('daily-status');
+let shownDailyDay='';
+function clearDaily(){dailyPanel.hidden=true;dailyStatus.textContent='';shownDailyDay='';}
+function renderDaily(automatic=false){
+ if(!birth.value||!birth.validity.valid){
+  clearDaily();dailyStatus.textContent=birth.value?'生年月日を確認してください。未来の日付では占えません。':'今日の運勢を見るには、生年月日を入力してください。カード占いは未入力でも進められます。';
+  if(!automatic)birth.focus();return;
+ }
+ const day=tokyoDay(),fortune=dailyFortune(birth.value,day);
+ document.getElementById('daily-title').textContent=fortune.title;
+ const dateLabel=document.getElementById('daily-date');dateLabel.dateTime=day;
+ dateLabel.textContent=new Intl.DateTimeFormat('ja-JP',{timeZone:'Asia/Tokyo',month:'long',day:'numeric',weekday:'long'}).format(new Date(day+'T00:00:00+09:00'))+' · 日本時間';
+ for(const field of ['overall','love','work','money','color','action'])document.getElementById('daily-'+field).textContent=fortune[field];
+ shownDailyDay=day;dailyPanel.hidden=false;dailyStatus.textContent=automatic?'日本時間の日付が変わったため、今日の運勢を更新しました。':'今日の運勢を表示しました。';
+ if(!automatic)document.getElementById('daily-title').focus();
+}
+document.getElementById('show-daily').addEventListener('click',()=>renderDaily());
+birth.addEventListener('input',clearDaily);zodiac.addEventListener('change',clearDaily);
+function refreshDailyIfNeeded(){birth.max=tokyoDay();if(!dailyPanel.hidden&&shownDailyDay!==tokyoDay())renderDaily(true);}
+setInterval(refreshDailyIfNeeded,60000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshDailyIfNeeded();});
+window.addEventListener('focus',refreshDailyIfNeeded);
+
 const portrait=document.getElementById('portrait');
 portrait.addEventListener('load',()=>{portrait.hidden=false;document.getElementById('placeholder').hidden=true;});
 portrait.addEventListener('error',()=>{portrait.hidden=true;document.getElementById('placeholder').hidden=false;});
@@ -400,6 +576,12 @@ function selectGuide(key){
 }
 document.querySelectorAll('button[data-guide]').forEach(button=>button.addEventListener('click',()=>selectGuide(button.dataset.guide)));
 // ブラウザがフォーム入力を復元する場合も、リロード時には初期状態から始める。
+document.querySelectorAll('.card-art').forEach(art=>{
+ const reveal=()=>{art.hidden=false;art.closest('.card').classList.add('has-art');};
+ art.addEventListener('load',reveal);
+ art.addEventListener('error',()=>{art.hidden=true;art.closest('.card').classList.remove('has-art');});
+ if(art.complete&&art.naturalWidth>0)reveal();
+});
 setup.reset();selectGuide('ryoko');
 </script>
 </body>
