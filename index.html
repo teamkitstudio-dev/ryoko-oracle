@@ -31,10 +31,11 @@ body[data-guide="ryoko"] .portrait:after{content:"";position:absolute;inset:0;po
 .card-caption{position:absolute;bottom:14px;left:8px;right:8px;z-index:2;display:flex;flex-direction:column;align-items:center;text-shadow:0 2px 7px #000}
 .card-caption .letter{font-size:12px;letter-spacing:.22em;margin:0 0 3px;color:#ead3a0;line-height:1.4}.card-caption .motif{font-size:20px;letter-spacing:.16em;color:#f6e6c6;line-height:1.5}.card-english{font-size:8px;letter-spacing:.2em;color:#cdbb98;margin-top:3px;line-height:1.3}
 @media(hover:hover) and (pointer:fine){.card:hover{transform:translateY(-8px);border-color:#ffe2a7;box-shadow:0 16px 35px #0008,0 0 22px #d6bc8033}}
-@media(max-width:600px){.cards{grid-template-columns:repeat(6,minmax(0,1fr));gap:12px 10px;max-width:410px}.card{grid-column:span 2;aspect-ratio:.61;border-radius:10px}.card:nth-child(4){grid-column:2 / span 2}.card:nth-child(5){grid-column:4 / span 2}.card:before{inset:4px;border-radius:6px}.card-caption{bottom:11px}.card-caption .motif{font-size:19px}.card-caption .letter{font-size:10px}.card-english{font-size:7px}.card-ornament{top:9px;font-size:11px}}
+@media(max-width:600px){.cards{grid-template-columns:repeat(6,minmax(0,1fr));gap:12px 10px;max-width:410px}.card{grid-column:span 2;aspect-ratio:.61;border-radius:10px}.card:nth-child(4){grid-column:2 / span 2}.card:nth-child(5){grid-column:4 / span 2}.card:before{inset:4px;border-radius:6px}.card-caption{bottom:11px}.card-caption .motif{font-size:clamp(15px,4.6vw,18px);letter-spacing:.08em;white-space:nowrap}.card-caption .letter{font-size:10px}.card-english{font-size:7px}.card-ornament{top:9px;font-size:11px}}
 @media(prefers-reduced-motion:reduce){.card{transition:none}}
 
 .daily-entry{margin:18px 0 0}.daily-entry .action{width:100%}.daily-result{margin:24px 0;padding:22px 18px;border:1px solid #c9aa6680;border-radius:10px;background:radial-gradient(ellipse at top,#6c427331,transparent 70%),#191321;overflow-wrap:anywhere}.daily-result time{font-size:12px;color:#c3b39a}.daily-result h3{font-size:22px;font-weight:400;line-height:1.7;color:#e8c98c;margin:14px 0}.daily-result>p:not(.step-label):not(.form-note){font-size:14px;line-height:2}.daily-details{margin:22px 0;font-size:13px;line-height:2}.daily-details dt{color:#dfc080;margin:16px 0 5px}.daily-details dd{margin:0;color:#d5cbdc}.daily-lucky{border-top:1px solid #b3975d33;padding-top:6px}.daily-lucky p{font-size:11px;color:#b6a8c1;margin:14px 0}.daily-lucky span{display:block;font-size:14px;color:#e8d4ac;margin-top:4px}.deep-entry{border-top:1px solid #a68a5340;padding-top:26px;margin-top:26px}#daily-title:focus{outline:none}
+.cards[data-phase="1"] .card{border-color:#a9c7b5}.cards[data-phase="1"] .card:before{border-color:#b2e2cb66}.cards[data-phase="2"] .card{border-color:#e8be72}.cards[data-phase="2"] .card:before{border-color:#f5d199a0}.reading-path li{padding:7px;min-width:0}.reading-path img{display:block;width:100%;aspect-ratio:2 / 3;object-fit:cover;border-radius:4px;margin:0 0 8px}.reading-path span{display:block;font-size:10px;line-height:1.7}
 </style>
 </head>
 <body data-guide="ryoko">
@@ -76,7 +77,7 @@ body[data-guide="ryoko"] .portrait:after{content:"";position:absolute;inset:0;po
 <label class="theme-option"><input type="radio" name="theme" value="general"><span>総合</span></label>
 </div></fieldset></div>
 <button class="action start-reading" type="submit">状況を詳しく選ぶ <span aria-hidden="true">→</span></button>
-<p class="form-note">各回5枚から1枚ずつ、合計3枚を選び、途中の問いかけで、少しずつ相談を掘り下げます。同じカードを続けて選んでも大丈夫です。内容は選択に応じた固定文です。出生時刻や出生地を使う精密な星図鑑定ではありません。</p>
+<p class="form-note">各回5枚から1枚ずつ、合計3枚を選び、途中の問いかけで、少しずつ相談を掘り下げます。全15種類から、段階ごとに別の5枚が現れます。戻ったときは同じ手札を見られます。内容は選択に応じた固定文です。出生時刻や出生地を使う精密な星図鑑定ではありません。</p>
 </form>
 <form id="reading-details" class="reading-setup" autocomplete="off" hidden>
 <p class="step-label">STEP 02 · 悩みをもう少し深く</p>
@@ -126,7 +127,7 @@ body[data-guide="ryoko"] .portrait:after{content:"";position:absolute;inset:0;po
 <span class="card-caption"><span class="letter">E</span><span class="motif">鏡</span><span class="card-english">MIRROR</span></span>
 </button>
 </div>
-<p class="hint">5枚の中から、今いちばん心が惹かれるものを。</p>
+<p class="hint">今回現れた5枚から、今いちばん心が惹かれるものを。</p>
 <button type="button" class="change-settings" id="card-back" hidden>前の読み解きに戻る</button>
 <button type="button" class="change-settings" id="change-settings">状況・知りたいことを変更する</button>
 </section>
@@ -287,7 +288,7 @@ birth.addEventListener('input',()=>{if(birth.value&&birth.validity.valid)zodiac.
 zodiac.addEventListener('change',()=>{birth.value='';});
 let selectedTheme='love', selectedZodiac='', currentGuide='ryoko', lastCard=null, currentCard=null;
 function contextLabel(){return `${themes[selectedTheme]}${selectedZodiac===''?'':` · ${zodiacNames[Number(selectedZodiac)]}`}`;}
-function updateAttribution(){if(currentCard)document.getElementById('result-label').textContent=`${guides[currentGuide].name}より · ${contextLabel()} · ${stage+1}枚目 ${currentCard} ${motifs[currentCard]}`;}
+function updateAttribution(){if(currentCard)document.getElementById('result-label').textContent=`${guides[currentGuide].name}より · ${contextLabel()} · ${stage+1}枚目 · ${motifs[currentCard]}`;}
 // 状況と視点はユーザー自身が選ぶ。性格や相手の内心を推定しない。
 const situations={
  love:[
@@ -347,6 +348,89 @@ const approaches={
 const cardAdvice={A:'月の一枚は、急いで動く前に一晩置いて自分の気持ちを確かめる視点を添えています。気持ちが落ち着く時間を、予定の中に残してみましょう。',B:'星の一枚は、一人で完結させず、頼れる情報や小さな楽しみを探す視点を添えています。誰かの経験を聞く場合も、それをそのままあなたの正解にしなくて構いません。',C:'鍵の一枚は、自分で選べる小さな範囲を明らかにする視点を添えています。使う時間や負担の上限、いったんやめる目安も決めてから試してみましょう。'};
 cardAdvice.D='薔薇の一枚は、自分や周りを大切にしながら、無理なく育てられることを探す視点を添えています。優しさを示すことと、負担を引き受けすぎることを分けて考えてみましょう。';
 cardAdvice.E='鏡の一枚は、印象と事実を分け、いつもの見方を確かめ直す視点を添えています。気になることを一つ書き、別の見方や確かめられる情報がないか探してみましょう。';
+const cardCatalogue=[
+ {id:'A',label:'月',english:'MOON',file:'moon',base:'A'},
+ {id:'B',label:'星',english:'STAR',file:'star',base:'B'},
+ {id:'C',label:'鍵',english:'KEY',file:'key',base:'C'},
+ {id:'D',label:'薔薇',english:'ROSE',file:'rose',base:'D'},
+ {id:'E',label:'鏡',english:'MIRROR',file:'mirror',base:'E'},
+ {id:'F',label:'ランタン',english:'LANTERN',file:'lantern',base:'B',title:'遠くの答えより、足元の灯り',notes:[
+  'ランタンは、先のすべてが見えなくても足元を照らす象徴です。今の相談で、すでに分かっていることと、まだ見えていないことを分けてみましょう。',
+  '灯りの届く範囲が狭いからこそ、いま確かめることを一つに絞れます。全部を理解してから進もうとせず、今日使える情報や助けを見つめてください。',
+  '今できる確認を一つ選び、分かったことを短く残してみましょう。次の判断は、その灯りが照らした範囲を見てからで構いません。']},
+ {id:'G',label:'羽根',english:'FEATHER',file:'feather',base:'A',title:'抱えているものを、一つ軽く',notes:[
+  '羽根は、気持ちを軽くする余白の象徴です。今の悩みに関係する負担の中に、本当はあなた一人で引き受けなくてもよいものがないか見つめてみましょう。',
+  '責任を感じることと、すべてを抱えることは別です。自分の希望、相手の期待、すぐに必要な用事を分けると、少し軽くできる部分が見つかるかもしれません。',
+  '明日の負担を一つだけ減らすなら何を選ぶか、考えてみてください。減らした分をすぐ別の予定で埋めず、空いた時間をそのまま残してもよいのです。']},
+ {id:'H',label:'本',english:'BOOK',file:'book',base:'E',title:'あなたの経験にも、手がかりがある',notes:[
+  '本は、自分の経験を読み直す象徴です。今回の相談に似た場面で、以前は何を感じ、何が助けになったでしょうか。過去と同じ答えを選ぶためではなく、使える手がかりを探してみてください。',
+  '一度の経験を、これからのすべての結論にしなくても構いません。前回と今とで違う条件を書き分けると、同じように見える悩みにも別の選び方があると気づける場合があります。',
+  '似た経験から「もう一度大切にしたいこと」と「今回は変えたいこと」を一つずつ書いてみましょう。あなた自身の言葉を、次の一歩の参考にしてください。']},
+ {id:'I',label:'砂時計',english:'HOURGLASS',file:'hourglass',base:'A',title:'急ぐ気持ちと、必要な時間',notes:[
+  '砂時計は、決める時期を見つめる象徴です。今の相談には実際の期限があるでしょうか。それとも、早く安心したい気持ちが答えを急がせているでしょうか。二つを分けてみましょう。',
+  '待つことが助けになる場面と、確かめないまま時間が過ぎる場面があります。何を待っているのか、どんな情報が増えれば考え直せるかを言葉にすると、保留にも自分の区切りを持てます。',
+  '次に振り返る日を一つ決め、その間に確かめたいことを一行だけ書いてみてください。待つあいだも生活や休息を大切にしてよいのです。']},
+ {id:'J',label:'蝶',english:'BUTTERFLY',file:'butterfly',base:'D',title:'変わりたい気持ちを、小さく育てる',notes:[
+  '蝶は、変化の途中にいる自分を受け止める象徴です。今までどおりの安心と、新しいことへの興味が一緒にあっても構いません。どちらかをすぐ消そうとせず、両方の気持ちを見てみましょう。',
+  '変わることは、今までの自分を否定することとは限りません。残しておきたい習慣や関係と、試しに変えてみたいことを分けると、変化の大きさを自分で調整しやすくなります。',
+  '続ける約束をせず、一度だけ試せることを選んでみましょう。終わった後の気持ちを確かめ、合わなければ戻したり変えたりする余地も残してください。']},
+ {id:'K',label:'橋',english:'BRIDGE',file:'bridge',base:'C',title:'向こう岸へ、渡せる言葉を',notes:[
+  '橋は、離れて見えるものの間につながりをつくる象徴です。自分の希望と相手の事情、今の暮らしと変えたいこと。その間に、小さく調整できる条件がないかを探してみましょう。',
+  '橋をかけるのは、あなたが一方的に譲ることではありません。何を守り、どこなら変えられるかを言葉にして、互いに確かめる余地を残すことも大切です。',
+  '難しい話を全部まとめず、確認したいことを一つだけ選んでみましょう。相手と話す場合も、すぐに一致させることより認識の違いを知るところから始められます。']},
+ {id:'L',label:'小道',english:'PATH',file:'path',base:'C',title:'一本道と、決めなくてもいい',notes:[
+  '小道は、選びながら方向を見直してよいという象徴です。今の相談を、成功か失敗かの二つだけで考えていませんか。途中まで試す、少し待つ、条件を変える道も並べてみましょう。',
+  '選んだ先のすべてを今は見通せなくても、確かめながら進める範囲があります。後から変えやすい選択と、戻す負担が大きい選択を分けて考えることが、無理の少ない進み方の助けになります。',
+  '今週だけ試せる一歩を一つ考えてみてください。続けるかどうかを判断する日や目安も決め、進むことと見直すことを両方の選択肢にしておきましょう。']},
+ {id:'M',label:'雫',english:'DROPLET',file:'droplet',base:'A',title:'小さな気持ちを、こぼさずに',notes:[
+  '雫は、まだ言葉になりきっていない気持ちに目を向ける象徴です。今の相談で、悲しい、ほっとする、気になると感じた小さな場面はありませんか。強い結論より、その感触からたどってみましょう。',
+  'いくつもの気持ちが混ざっているときは、一つに名前をつけなくても構いません。うれしかった部分とつらかった部分を別々に書くと、自分に必要なことを考える手がかりになります。',
+  '今日の気持ちを、評価をつけず三つの言葉で残してみましょう。今すぐ誰かに説明する必要はありません。後から読み返したとき、繰り返し出てくる願いがないか確かめてください。']},
+ {id:'N',label:'太陽',english:'SUN',file:'sun',base:'B',title:'今ある支えにも、光を当てる',notes:[
+  '太陽は、悩みだけでなく、今ある力や支えも見つめる象徴です。今回の相談の中で、少しできていること、助けになった言葉や人は何でしょうか。明るく振る舞うことを無理に求めるカードではありません。',
+  '足りないことばかり数えると、使えるものを見落としがちです。一方で、楽観だけで負担を消してしまう必要もありません。心配なことと、すでに助けになっていることを同じ紙に並べてみましょう。',
+  'すでに役立っている工夫や支えを一つ選び、次にも使える形にしてみてください。助けを頼む、よかった手順を残すなど、小さく再現できることで十分です。']},
+ {id:'O',label:'羅針盤',english:'COMPASS',file:'compass',base:'E',title:'誰かの正解より、あなたの方角',notes:[
+  '羅針盤は、自分の選ぶ基準を見直す象徴です。今の相談で、何をいちばん守りたいでしょうか。安心、時間、関係、生活の安定。人の期待とは別に、あなた自身の優先順位を確かめてみましょう。',
+  '迷いがあるのは、複数の大切なものがあるからかもしれません。全部を満たす答えをすぐに探すより、今は何を先に守りたいか、何なら後で調整できるかを分ける方法もあります。',
+  '譲れないことを二つだけ書き、考えている進み方がそれを守れるか確認してみましょう。他人の選択を参考にするときも、自分の暮らしの条件と合うかを確かめてください。']}
+];
+const cardById=Object.fromEntries(cardCatalogue.map(card=>[card.id,card]));
+cardCatalogue.forEach(card=>{motifs[card.id]=card.label;});
+const fallbackSymbols=Object.fromEntries([...document.querySelectorAll('[data-card]')].map(button=>[button.dataset.card,button.querySelector('svg').outerHTML]));
+let stageDecks=[],lastFirstSpread=[];
+function shuffleCards(cards){
+ const shuffled=[...cards];for(let i=shuffled.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]];}return shuffled;
+}
+function createStageDecks(){
+ // 直前の最初の5枚を避ける。戻る場合は同じ手札を維持する。
+ const first=shuffleCards(cardCatalogue.filter(card=>!lastFirstSpread.includes(card.id))).slice(0,5);
+ const remaining=shuffleCards(cardCatalogue.filter(card=>!first.some(firstCard=>firstCard.id===card.id)));
+ stageDecks=[first,remaining.slice(0,5),remaining.slice(5,10)];lastFirstSpread=first.map(card=>card.id);
+}
+function renderStageDeck(){
+ if(!stageDecks.length)createStageDecks();
+ const grid=document.querySelector('.cards');grid.dataset.phase=String(stage);
+ grid.querySelectorAll('[data-card]').forEach((button,index)=>{
+  const card=stageDecks[stage][index],art=button.querySelector('.card-art');
+  button.dataset.card=card.id;button.className=`card card-${card.file}`;
+  button.setAttribute('aria-label',`選択肢${index+1}、${card.label}のカードを選ぶ`);
+  button.querySelector('.letter').textContent=['I','II','III','IV','V'][index];
+  button.querySelector('.motif').textContent=card.label;button.querySelector('.card-english').textContent=card.english;
+  button.querySelector('.card-fallback').innerHTML=fallbackSymbols[card.base];
+  const src=`assets/card-${card.file}.webp`;art.hidden=false;
+  if(art.getAttribute('src')===src&&art.complete&&art.naturalWidth>0)button.classList.add('has-art');
+  else art.src=src;
+ });
+}
+function readingFor(theme,cardId){
+ const card=cardById[cardId],base=readings[theme][card.base];
+ if(!card.notes)return base;
+ const renamed=base.slice(1).map(text=>text.replaceAll(`${motifs[card.base]}のカード`,`${card.label}のカード`));
+ return [card.title,...renamed.map((text,index)=>card.notes[index]+' '+text)];
+}
+function adviceFor(cardId){const card=cardById[cardId];return card.notes?card.notes[2]:cardAdvice[cardId];}
+
 const detailForm=document.getElementById('reading-details');
 const journeyForm=document.getElementById('journey-response');
 let selectedSituation='',selectedPerspective='',detailsTheme='',detailsSituation='';
@@ -370,7 +454,7 @@ function renderConcernOptions(){
  detailsSituation=key;
 }
 detailForm.addEventListener('change',event=>{if(event.target.name==='situation')renderConcernOptions();});
-function clearJourney(){stage=0;draws=[];reaction='';approach='';currentCard=null;document.getElementById('journey-progress').hidden=true;}
+function clearJourney(){stage=0;stageDecks=[];draws=[];reaction='';approach='';currentCard=null;document.getElementById('journey-progress').hidden=true;}
 function showDetails(){
  clearJourney();setup.hidden=true;selection.hidden=true;result.hidden=true;detailForm.hidden=false;
  if(detailsTheme!==selectedTheme){
@@ -398,8 +482,8 @@ function updateProgress(){
  });
 }
 function showCards(index){
- stage=index;currentCard=null;setup.hidden=true;detailForm.hidden=true;result.hidden=true;selection.hidden=false;updateProgress();
- const headings=['1枚目 · 今のあなたを映すカード','2枚目 · ためらいの奥を照らすカード','3枚目 · 次の一歩を見つめるカード'];
+ stage=index;renderStageDeck();currentCard=null;setup.hidden=true;detailForm.hidden=true;result.hidden=true;selection.hidden=false;updateProgress();
+ const headings=['1枚目 · 今のあなたを映すカード','2枚目 · 気持ちの奥を照らすカード','3枚目 · 次の一歩を見つめるカード'];
  document.getElementById('selection-heading').textContent=headings[stage];
  document.getElementById('selection-context').textContent=`${contextLabel()} · ${situations[selectedTheme][selectedSituation].label}`;
  document.getElementById('selection-perspective').textContent=stage===0?concern()[0]:stage===1?reactions[Number(reaction)].label:approaches[selectedTheme][Number(approach)].label;
@@ -424,7 +508,7 @@ function renderResponse(){
 }
 function showReading(index){
  stage=index;currentCard=draws[stage];updateProgress();
- const situation=situations[selectedTheme][Number(selectedSituation)],query=concern(),message=readings[selectedTheme][currentCard];
+ const situation=situations[selectedTheme][Number(selectedSituation)],query=concern(),message=readingFor(selectedTheme,currentCard);
  document.getElementById('reading').replaceChildren();
  document.getElementById('result-summary').textContent=`今回の相談：${situation.label} ／ ${query[0]}`;
  if(stage===0){
@@ -433,21 +517,25 @@ function showReading(index){
   appendSection('あなたが選んだ問いへの手がかり',query[1]);
   appendSection('最初のカードからの言葉',message[1]);
  }else if(stage===1){
-  title.textContent='2枚目 · ためらいの奥にあるもの';
+  title.textContent='2枚目 · 気持ちの奥にあるもの';
   appendSection('あなたが選んだ気持ち',reactions[Number(reaction)].label+'。'+reactions[Number(reaction)].text);
-  appendSection('もう一枚が照らす視点',message[2]+' '+cardAdvice[currentCard]);
+  appendSection('もう一枚が照らす視点',message[2]+' '+adviceFor(currentCard));
   appendSection('この相談で、確かめたいこと',situation.question+' '+query[1]);
  }else{
   title.textContent='3枚がつなぐ、あなたの今夜の道筋';
   const path=document.createElement('ol');path.className='reading-path';path.setAttribute('aria-label','選んだ3枚のカード');
-  draws.forEach((card,i)=>{const item=document.createElement('li');item.textContent=`${i+1}枚目：${card} · ${motifs[card]}`;path.append(item);});document.getElementById('reading').append(path);
+  draws.forEach((card,i)=>{
+   const item=document.createElement('li'),image=document.createElement('img'),caption=document.createElement('span');
+   image.src=`assets/card-${cardById[card].file}.webp`;image.alt='';image.loading='lazy';image.addEventListener('error',()=>{image.hidden=true;});
+   caption.textContent=`${i+1}枚目：${motifs[card]}`;item.append(image,caption);path.append(item);
+  });document.getElementById('reading').append(path);
   appendSection('01 · 最初の問いを、振り返る',query[0]+'。'+query[1]);
-  appendSection(`02 · 1枚目の${motifs[draws[0]]}：今のあなた`,readings[selectedTheme][draws[0]][1]);
-  appendSection(`03 · 2枚目の${motifs[draws[1]]}：気持ちの奥を照らす`,reactions[Number(reaction)].text+' '+readings[selectedTheme][draws[1]][2]);
+  appendSection(`02 · 1枚目の${motifs[draws[0]]}：今のあなた`,readingFor(selectedTheme,draws[0])[1]);
+  appendSection(`03 · 2枚目の${motifs[draws[1]]}：気持ちの奥を照らす`,reactions[Number(reaction)].text+' '+readingFor(selectedTheme,draws[1])[2]);
   appendSection('04 · 選べる道と、その両面',situation.options);
   const direction=approaches[selectedTheme][Number(approach)];
   appendSection(`05 · あなたが選んだ道：${direction.label}`,direction.text);
-  appendSection(`06 · 3枚目の${motifs[draws[2]]}：試せそうな一歩`,message[3]+' '+cardAdvice[currentCard]);
+  appendSection(`06 · 3枚目の${motifs[draws[2]]}：試せそうな一歩`,message[3]+' '+adviceFor(currentCard));
   if(selectedZodiac!=='')appendSection(`${zodiacNames[Number(selectedZodiac)]}の象徴から`,zodiacHints[Number(selectedZodiac)]);
   appendSection('07 · 今夜、持ち帰る問い',direction.question+' '+situation.question);
  }

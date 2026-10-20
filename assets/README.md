@@ -7,3 +7,5 @@
 人物画像の読み込み失敗時にはHTML内の月の代替表示を使用します。
 
 5枚のカードイラストも、このアプリ用に生成しています。`card-moon.webp`（月）、`card-star.webp`（星）、`card-key.webp`（鍵）、`card-rose.webp`（薔薇）、`card-mirror.webp`（鏡）。スマホでの通信量を抑えるため、WebP形式で収録しています。失敗時にはHTML内の線画を代替表示します。
+
+追加のカード：`card-lantern.webp`（ランタン）、`card-feather.webp`（羽根）、`card-book.webp`（本）、`card-hourglass.webp`（砂時計）、`card-butterfly.webp`（蝶）、`card-bridge.webp`（橋）、`card-path.webp`（小道）、`card-droplet.webp`（雫）、`card-sun.webp`（太陽）、`card-compass.webp`（羅針盤）。すべてこのアプリ用に生成したイラストです。全15枚から段階ごとに別の5枚を表示します。
