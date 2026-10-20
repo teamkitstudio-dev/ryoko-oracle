@@ -40,7 +40,7 @@
     '<p id="review-quick-caption"></p><h2 id="review-quick-title"></h2><img id="review-quick-art" alt=""><p id="review-quick-body"></p><p id="review-quick-advice"></p><div class="actions"><button type="button" class="action" id="review-quick-detail">詳しく占う</button><button type="button" class="action secondary" id="review-quick-save">この一枚を保存</button></div><p class="review-status" id="review-quick-status" role="status"></p><p>独自の固定文から作った娯楽コンテンツです。未来を予言するものではありません。</p>');
   panel.id='review-quick-panel';
   panel.hidden=true;
-  document.getElementById('review-quick-title').setAttribute('tabindex','-1');
+  panel.querySelector('#review-quick-title').setAttribute('tabindex','-1');
   setup.after(panel);
 
   const memoWrap=make('div','review-memo-wrap',
