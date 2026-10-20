@@ -1,0 +1,30 @@
+name: RYOKO ORACLE review checks
+on:
+  push:
+    branches: [feat/book-inspired-daily-reading]
+    paths:
+      - 'index.html'
+      - 'tests/**'
+      - '.github/workflows/review-checks.yml'
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: ryoko-review-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Verify review branch syntax and mock interaction smoke tests
+        run: |
+          node --check tests/smoke-mock.js
+          node tests/smoke-mock.js
+      - name: Explicitly mark UI testing as pending
+        run: echo "Mock tests only; Safari/Chromium visual checks and merge-conflict resolution remain required."
