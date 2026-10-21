@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "iterations": 310000,
+  "salt": "OQxczV8+xSCWG5YzD3tNkg==",
+  "files": [
+    {
+      "id": "book",
+      "name": "ryoko-love7-v1.pdf",
+      "mime": "application/pdf",
+      "ciphertext": "book.bin",
+      "iv": "v3JgIxs9OaD+w638"
+    },
+    {
+      "id": "cover",
+      "name": "booth-cover.png",
+      "mime": "image/png",
+      "ciphertext": "cover.bin",
+      "iv": "3W3NdBw4y+dTEtWh"
+    }
+  ]
+}
