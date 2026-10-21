@@ -15,17 +15,20 @@ const {chromium}=require('playwright');
     page.on('pageerror',err=>errors.push(err.message));
     await page.goto(process.env.ORACLE_URL||'http://127.0.0.1:8000/',{waitUntil:'load'});
     await check('main and extension loaded',async()=>{
-      assert.equal(await page.locator('#review-quick-start').count(),1);
+      assert.equal(await page.locator('#review-method-details').count(),1);
+      assert.equal(await page.locator('[data-quick-theme]').count(),4);
       assert.equal(await page.locator('#reading-details').isHidden(),true);
       assert.equal(await page.locator('.cards [data-card]').count(),5);
     });
-    await page.locator('#review-quick-start').click();
+    await page.locator('[data-quick-theme="work"]').click();
     await check('quick reading keeps 15-card source',async()=>{
       assert.equal(await page.locator('#reading-setup').isHidden(),true);
       assert.equal(await page.locator('#review-quick-panel').isVisible(),true);
       assert.ok((await page.locator('#review-quick-title').textContent()).length>0);
       const src=await page.locator('#review-quick-art').getAttribute('src');
       assert.match(src,/^assets\/card-[a-z]+\.webp$/);
+      assert.ok((await page.locator('#review-quick-reason').textContent()).includes('仕事'));
+      assert.ok((await page.locator('#review-quick-caption').textContent()).includes('仕事'));
     });
     await page.locator('#review-quick-save').click();
     await check('opt-in history excludes private inputs',async()=>{
@@ -57,6 +60,8 @@ const {chromium}=require('playwright');
         assert.equal(await page.locator('#review-memo-summary img').count(),0);
         assert.equal(await page.locator('.review-monthly').isVisible(),true);
         assert.ok((await page.locator('#review-monthly-text').textContent()).length>8);
+        assert.ok((await page.locator('#review-reason-text').textContent()).includes('仕事'));
+        assert.ok((await page.locator('#review-reason-text').textContent()).includes('象徴'));
       });
       if(i!==2){
         await page.locator('#journey-options input').first().check();
