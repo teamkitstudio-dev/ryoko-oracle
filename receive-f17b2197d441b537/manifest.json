@@ -14,8 +14,8 @@
       "id": "cover",
       "name": "booth-cover.png",
       "mime": "image/png",
-      "ciphertext": "cover.bin",
-      "iv": "3W3NdBw4y+dTEtWh"
+      "ciphertext": "cover_v2.bin",
+      "iv": "951re8cUK/cSzoqT"
     }
   ]
 }
