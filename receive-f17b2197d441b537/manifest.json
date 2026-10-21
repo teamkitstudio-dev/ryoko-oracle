@@ -5,17 +5,17 @@
   "files": [
     {
       "id": "book",
-      "name": "ryoko-love7-v1.pdf",
+      "name": "ryoko-ren-love-oracle-v2.pdf",
       "mime": "application/pdf",
-      "ciphertext": "book.bin",
-      "iv": "v3JgIxs9OaD+w638"
+      "ciphertext": "book_oracle_v2_cdff2cd0.bin",
+      "iv": "zf8s0EAHL2qQCG+R"
     },
     {
       "id": "cover",
       "name": "booth-cover.png",
       "mime": "image/png",
-      "ciphertext": "cover_v2.bin",
-      "iv": "951re8cUK/cSzoqT"
+      "ciphertext": "cover_oracle_v2_6ecbe94c.bin",
+      "iv": "bsvpTGbVHNl6EjjV"
     }
   ]
 }

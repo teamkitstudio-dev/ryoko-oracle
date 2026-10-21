@@ -7,7 +7,7 @@ function validCheckout(value){
 async function updateSale(){
  try{
   const response=await fetch('config.json',{cache:'no-store'});if(!response.ok)return;const config=await response.json();
-  if(config.saleEnabled!==true||config.priceJPY!==980||config.pageCount!==20||config.samplePageCount!==4)return;
+  if(config.saleEnabled!==true||config.productVersion!=='2.0'||config.priceJPY!==980||config.pageCount!==20||config.samplePageCount!==4)return;
   const url=validCheckout(config.checkoutUrl);if(!url)return;
   const button=document.getElementById('buy-button');button.href=url;button.hidden=false;document.getElementById('preparing-button').hidden=true;
   document.getElementById('sale-status').textContent='本編はBOOTHで販売中です。無料サンプルで内容を確かめてからお選びいただけます。';

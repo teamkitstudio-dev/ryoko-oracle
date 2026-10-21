@@ -5,6 +5,7 @@ const {readFile}=require('node:fs/promises');
 const url=process.env.DELIVERY_URL;
 const passphrase=process.env.DELIVERY_CODE;
 const expected=JSON.parse(process.env.DELIVERY_HASHES||'{}');
+const names=JSON.parse(process.env.DELIVERY_NAMES||'{"book":"ryoko-ren-love-oracle-v2.pdf","cover":"booth-cover.png"}');
 if(!url||!passphrase||!expected.book||!expected.cover)throw new Error('Set DELIVERY_URL, DELIVERY_CODE and DELIVERY_HASHES privately.');
 (async()=>{
  const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',headless:true,args:['--no-sandbox']});
@@ -34,7 +35,7 @@ if(!url||!passphrase||!expected.book||!expected.cover)throw new Error('Set DELIV
     const event=page.waitForEvent('download');
     await page.locator('#'+id+'-save').click();
     const download=await event;
-    assert.equal(download.suggestedFilename(),id==='book'?'ryoko-love7-v1.pdf':'booth-cover.png');
+    assert.equal(download.suggestedFilename(),names[id]);
     assert.equal(await download.failure(),null);
     const content=await readFile(await download.path());
     assert.equal(createHash('sha256').update(content).digest('hex'),expected[id]);
@@ -52,7 +53,7 @@ if(!url||!passphrase||!expected.book||!expected.cover)throw new Error('Set DELIV
    await page.close();
   }
   const page=await browser.newPage();
-  await page.route('**/book.bin',async route=>{
+  await page.route('**/book*.bin',async route=>{
    const response=await route.fetch();
    const body=Buffer.from(await response.body());body[0]^=1;
    await route.fulfill({response,body});

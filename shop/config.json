@@ -1,9 +1,10 @@
 {
-  "productTitle": "恋愛の迷いをほどく7日間",
+  "productTitle": "りょうこ・れんの恋愛カード占い",
   "priceJPY": 980,
   "pageCount": 20,
   "samplePageCount": 4,
   "saleEnabled": false,
   "shopUrl": "https://aimodelgallery.booth.pm/",
-  "checkoutUrl": null
+  "checkoutUrl": null,
+  "productVersion": "2.0"
 }
