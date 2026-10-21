@@ -36,6 +36,7 @@
 
 .daily-entry{margin:18px 0 0}.daily-entry .action{width:100%}.daily-result{margin:24px 0;padding:22px 18px;border:1px solid #c9aa6680;border-radius:10px;background:radial-gradient(ellipse at top,#6c427331,transparent 70%),#191321;overflow-wrap:anywhere}.daily-result time{font-size:12px;color:#c3b39a}.daily-result h3{font-size:22px;font-weight:400;line-height:1.7;color:#e8c98c;margin:14px 0}.daily-result>p:not(.step-label):not(.form-note){font-size:14px;line-height:2}.daily-details{margin:22px 0;font-size:13px;line-height:2}.daily-details dt{color:#dfc080;margin:16px 0 5px}.daily-details dd{margin:0;color:#d5cbdc}.daily-lucky{border-top:1px solid #b3975d33;padding-top:6px}.daily-lucky p{font-size:11px;color:#b6a8c1;margin:14px 0}.daily-lucky span{display:block;font-size:14px;color:#e8d4ac;margin-top:4px}.deep-entry{border-top:1px solid #a68a5340;padding-top:26px;margin-top:26px}#daily-title:focus{outline:none}
 .cards[data-phase="1"] .card{border-color:#a9c7b5}.cards[data-phase="1"] .card:before{border-color:#b2e2cb66}.cards[data-phase="2"] .card{border-color:#e8be72}.cards[data-phase="2"] .card:before{border-color:#f5d199a0}.reading-path li{padding:7px;min-width:0}.reading-path img{display:block;width:100%;aspect-ratio:2 / 3;object-fit:cover;border-radius:4px;margin:0 0 8px}.reading-path span{display:block;font-size:10px;line-height:1.7}
+.commerce-teaser{margin-top:28px;padding:24px 18px;background:#2a1e35;border:1px solid #c5a56e60;border-radius:8px;text-align:left}.commerce-teaser h3{font-weight:400;font-size:20px;line-height:1.7;color:#e7cda0;margin:0 0 12px}.commerce-teaser>p:not(.eyebrow){font-size:13px;color:#c5b4ce;line-height:2}.commerce-teaser .action{display:block;text-align:center;text-decoration:none;margin-top:18px}.commerce-teaser .commerce-note{font-size:10px!important;margin:12px 0 0}.commerce-footer{color:#b8a174;text-underline-offset:3px}
 </style>
 </head>
 <body data-guide="ryoko">
@@ -143,9 +144,10 @@
 <button type="button" class="change-settings" id="journey-back">ひとつ前に戻る</button>
 <p class="reflection-note" id="reflection-note" hidden>今夜、結論を出さなくても構いません。残しておきたい問いをひとつ、持ち帰ってください。</p>
 <div class="actions" id="final-actions" hidden><button class="action" id="again" type="button">3枚をもう一度引く</button><button class="action secondary" id="reconsider" type="button">相談を選び直す</button><button class="action secondary" id="home" type="button">最初に戻る</button></div>
+<aside class="commerce-teaser" id="product-teaser" aria-label="恋愛リーディングブックの無料サンプル" hidden><p class="eyebrow">言葉を受け取った、その先へ</p><h3>気持ちを、7日間かけてほどく。</h3><p>恋愛の読み解きと書き込みワークを収録した、20ページのリーディングブック。まずはDAY1の無料サンプルで、あなたの言葉を残してみませんか。</p><a class="action secondary" href="shop/" target="_blank" rel="noopener">商品案内・無料サンプルを見る</a><p class="commerce-note">アプリの占いは引き続き無料で使えます。</p></aside>
 </section>
 <noscript><p>カードを選ぶには、ブラウザのJavaScriptを有効にしてください。</p></noscript>
-<footer><p>この占いは、娯楽と自己理解のためのコンテンツです。<br>未来や第三者の気持ちを確定するものではありません。<br>心に響く言葉を、あなた自身のペースで受け取ってください。</p><p class="signature">RYOKO ORACLE · 月の案内人 りょうこ</p></footer>
+<footer><p>この占いは、娯楽と自己理解のためのコンテンツです。<br>未来や第三者の気持ちを確定するものではありません。<br>心に響く言葉を、あなた自身のペースで受け取ってください。</p><p class="signature">RYOKO ORACLE · 月の案内人 りょうこ</p><p><a class="commerce-footer" href="shop/" target="_blank" rel="noopener">商品案内・無料サンプル</a></p></footer>
 </main>
 <script>
 'use strict';
@@ -541,6 +543,7 @@ function showReading(index){
  }
  document.getElementById('reflection-note').hidden=stage!==2;
  document.getElementById('final-actions').hidden=stage!==2;
+ document.getElementById('product-teaser').hidden=stage!==2||selectedTheme!=='love';
  renderResponse();updateAttribution();selection.hidden=true;result.hidden=false;
  intro.textContent=stage===2?'一つの答えを押しつけず、あなたが選んだ道筋を振り返ります。':'これは途中の読み解きです。下の選択から、もう少し奥へ進めます。';
  title.focus();
