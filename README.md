@@ -4,7 +4,7 @@
 
 ## 起動
 
-`index.html` をブラウザで開きます。JavaScriptを有効にしてください。CSS・JavaScript・カードのSVGはHTML内にあります。人物画像も表示するには `assets` を同じフォルダに置いてください。
+`index.html` をブラウザで開きます。JavaScriptを有効にしてください。主なCSS・JavaScript・カードのSVGはHTML内にあり、統合レビュー版の追加機能は `assets/review-features.js` にあります。人物画像・カード画像・追加機能を表示するため、`assets` を同じフォルダに置いてください。
 
 ローカルHTMLを制限するブラウザでは、Python 3がある環境で次を実行できます。
 
@@ -87,6 +87,8 @@ python -m http.server 8765 --bind 127.0.0.1
 ## 画像とファイル
 
 - `index.html`：画面、固定文、星座の日付区分、切り替え操作。
+- `assets/review-features.js`：レビュー版の占いの仕組み表示、テーマ別の一枚、理由表示、月間メッセージ、任意の履歴機能。
+- `MARKET_REVIEW_2026-10-21.md`：競合調査、機能採否の根拠、検証計画。
 - `assets/ryoko.png`：ユーザー提供の元画像。画像データ・顔・衣装の加工はしていません。表示時にCSSで薄い深紫の陰影を重ね、男性画像との明るさをそろえています。
 - `assets/ren.png`：このアプリ用に生成した架空の男性占い師「れん」（仮名）。
 - `assets/card-*.webp`：生成した15枚のカードイラスト。スマホ向けにWebP形式で収録し、表示する手札から読み込みます。生成元のPNGはリポジトリに含めません。
