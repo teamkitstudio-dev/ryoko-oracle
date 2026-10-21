@@ -1,35 +1,65 @@
 <!doctype html>
-<html lang="ja">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex,nofollow,noarchive">
-<meta name="referrer" content="no-referrer">
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive"><meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-<title>BOOTH登録用ファイルの受け取り</title>
-<link rel="stylesheet" href="receive.css">
-<script src="receive.js" defer></script>
-</head>
-<body>
-<main>
+<title>新しい商品一式｜恋愛カード占い</title>
+<link rel="stylesheet" href="receive.css?v=3"><script src="receive-v3.js" defer></script>
+</head><body><main>
 <p class="eyebrow">月の案内人 りょうこ・れん</p>
-<h1>登録用ファイルを<br>受け取る</h1>
-<p>チャットでお伝えした合言葉を貼り付けてください。</p>
-<form id="unlock-form">
-<label for="passphrase">合言葉</label>
-<input id="passphrase" type="password" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" required>
-<button id="unlock" type="submit">ファイルを開く</button>
-</form>
+<h1>新しい商品一式</h1>
+<p>恋愛カード占い・改訂版2.0です。<br>合言葉を貼り付けて「ファイルを開く」を押してください。</p>
+<form id="unlock-form"><label for="passphrase">合言葉</label><input id="passphrase" type="password" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" required><button id="unlock" type="submit">ファイルを開く</button></form>
 <p id="status" role="status" aria-live="polite"></p>
 <section id="files" hidden aria-label="保存するファイル">
-<p>下のボタンを押して保存してください。通常はパソコンの「ダウンロード」フォルダに入ります。</p>
-<a id="book-save" class="save">販売用PDFを保存</a>
-<p class="detail">恋愛カード占い・改訂版2.0／20ページ・約1.2MB<br>BOOTHの「ファイルの追加・管理」に登録します。</p>
+<a id="kit-save" class="save">一式を保存（ZIP）</a>
+<p class="detail">販売用PDF・商品画像・商品名と説明文・差し替え手順の4ファイル入り。保存したZIPを開くと取り出せます。</p>
+<details id="listing-fields"><summary>商品名・紹介文を表示する</summary>
+<label for="product-title">商品名</label><textarea id="product-title" readonly rows="3">月の案内人｜りょうこ・れんの恋愛カード占い【3段階・各5択／PDF20ページ】</textarea>
+<p>価格：<strong>980円</strong></p>
+<label for="product-description">商品紹介文</label><textarea id="product-description" readonly rows="12">3枚が導く、これから7日間の恋模様。
+りょうこ・れんのオリジナルカード占いです。
+
+今の恋はどんな運気の中にある？
+これからの流れと、恋を動かす開運の一手は？
+3段階で各5枚から1枚ずつ選び、選んだカードの結果へ進みます。
+
+【占えること】
+1枚目：今の恋の現状。追い風・停滞の原因・運を動かす鍵。
+2枚目：これから7日間の恋の流れ。1〜2日目・3〜5日目・6〜7日目の目安。
+3枚目：開運の一手。連絡の目安・具体的な行動・ラッキーサイン。
+
+各段階で異なる5枚、計15枚を収録。
+出会い・片思い・交際中・復縁・曖昧な関係の5つの状況に合わせた補足と、12星座の一言、3枚の読み合わせ例も収録しています。
+
+【無料サンプル】
+実際に5枚から選んで、今の恋の運気を占えます。
+ブラウザ版：https://teamkitstudio-dev.github.io/ryoko-oracle/shop/sample.html?v=2
+PDF版：https://teamkitstudio-dev.github.io/ryoko-oracle/shop/sample.pdf?v=2
+
+【形式】
+PDF／日本語／A5縦／全20ページ
+カード画像のリンクを押し、対応する結果へ進む形式です。
+リンク非対応のPDFアプリや印刷では、掲載ページ番号から結果を探せます。
+購入前に無料サンプルで表示と移動をご確認ください。
+
+【ご確認ください】
+固定の15枚のカードとオリジナル解釈による占いです。同じ選択なら同じ結果を読みます。自動シャッフル・日替わり生成・入力フォーム・AIチャット・個別相談の機能はありません。
+「7日間」は占った日を1日目として読む象徴的な流れで、天体計算や出来事の日付を特定する予測ではありません。星座は一般的な日付区分と象徴による補足です。
+娯楽としての占いで、未来・第三者の気持ち・恋愛の結果を保証するものではありません。
+人物・カード画像の一部に生成AIを使用しています。
+個人でお楽しみください。商品ファイルの再配布・再販売はお控えください。
+
+無料のWeb占いは引き続き使えます。
+https://teamkitstudio-dev.github.io/ryoko-oracle/</textarea>
+<p class="detail">文章を選択してコピーし、BOOTHの対応する欄へ貼り付けてください。</p>
+</details>
+<h2>個別に保存する場合</h2>
+<a id="book-save" class="save secondary">販売用PDFを保存</a>
+<p class="detail">恋愛カード占い／20ページ・約1.2MB<br>BOOTHの「作品ファイル」に登録します。</p>
 <a id="cover-save" class="save secondary">商品画像を保存</a>
-<p class="detail">BOOTHの「商品画像」に登録します。</p>
+<p class="detail">りょうこ・れんの二人入り画像。<br>BOOTHの「商品画像」に登録します。</p>
 </section>
-<p class="privacy">合言葉はこのブラウザ内でのみ使います。入力内容は送信しません。ページ上のファイルは暗号化されています。</p>
-<noscript>ファイルを受け取るには、ブラウザのJavaScriptを有効にしてください。</noscript>
-</main>
-</body>
-</html>
+<p class="privacy">合言葉はこのブラウザ内でのみ使います。入力内容は送信しません。商品ファイルは暗号化して保管しています。</p>
+<noscript>ファイルを受け取るにはJavaScriptを有効にしてください。</noscript>
+</main></body></html>

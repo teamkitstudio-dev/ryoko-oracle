@@ -1,0 +1,28 @@
+{
+  "version": 2,
+  "iterations": 310000,
+  "salt": "OQxczV8+xSCWG5YzD3tNkg==",
+  "files": [
+    {
+      "id": "book",
+      "name": "ryoko-ren-love-oracle-v2.pdf",
+      "mime": "application/pdf",
+      "ciphertext": "book_oracle_v2_cdff2cd0.bin",
+      "iv": "zf8s0EAHL2qQCG+R"
+    },
+    {
+      "id": "cover",
+      "name": "booth-cover.png",
+      "mime": "image/png",
+      "ciphertext": "cover_oracle_v2_6ecbe94c.bin",
+      "iv": "bsvpTGbVHNl6EjjV"
+    },
+    {
+      "id": "kit",
+      "name": "BOOTH-oracle-v2-upload-kit.zip",
+      "mime": "application/zip",
+      "ciphertext": "kit_oracle_v2_2b608879.bin",
+      "iv": "K2CIeVBEHh5T82NI"
+    }
+  ]
+}

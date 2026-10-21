@@ -5,8 +5,8 @@ const {readFile}=require('node:fs/promises');
 const url=process.env.DELIVERY_URL;
 const passphrase=process.env.DELIVERY_CODE;
 const expected=JSON.parse(process.env.DELIVERY_HASHES||'{}');
-const names=JSON.parse(process.env.DELIVERY_NAMES||'{"book":"ryoko-ren-love-oracle-v2.pdf","cover":"booth-cover.png"}');
-if(!url||!passphrase||!expected.book||!expected.cover)throw new Error('Set DELIVERY_URL, DELIVERY_CODE and DELIVERY_HASHES privately.');
+const names=JSON.parse(process.env.DELIVERY_NAMES||'{"book":"ryoko-ren-love-oracle-v2.pdf","cover":"booth-cover.png","kit":"BOOTH-oracle-v2-upload-kit.zip"}');
+if(!url||!passphrase||!expected.book||!expected.cover||!expected.kit)throw new Error('Set DELIVERY_URL, DELIVERY_CODE and DELIVERY_HASHES privately.');
 (async()=>{
  const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',headless:true,args:['--no-sandbox']});
  try{
@@ -31,7 +31,7 @@ if(!url||!passphrase||!expected.book||!expected.cover)throw new Error('Set DELIV
    await page.locator('#files').waitFor({state:'visible'});
    assert(await page.locator('#unlock-form').isHidden());
    assert.equal(await page.locator('#passphrase').inputValue(),'');
-   for(const id of ['book','cover']){
+   for(const id of ['kit','book','cover']){
     const event=page.waitForEvent('download');
     await page.locator('#'+id+'-save').click();
     const download=await event;
@@ -40,7 +40,16 @@ if(!url||!passphrase||!expected.book||!expected.cover)throw new Error('Set DELIV
     const content=await readFile(await download.path());
     assert.equal(createHash('sha256').update(content).digest('hex'),expected[id]);
     if(id==='book')assert.equal(content.subarray(0,5).toString(),'%PDF-');
+    if(id==='kit')assert.equal(content.subarray(0,2).toString(),'PK');
    }
+   await page.locator('#listing-fields summary').click();
+   assert.match(await page.locator('#product-title').inputValue(),/りょうこ・れんの恋愛カード占い/);
+   const description=await page.locator('#product-description').inputValue();
+   assert.match(description,/3段階で各5枚から1枚ずつ選び/);
+   assert.match(description,/固定の15枚/);
+   assert(!description.includes('<!--'));
+   assert(!description.includes('書き込みワーク'));
+   await page.locator('#listing-fields summary').click();
    assert(!(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth)));
    await page.screenshot({path:'/tmp/ryoko-owner-'+width+'.png',fullPage:true});
    assert(requests.every(r=>!r.url.includes(passphrase)&&!r.body&&r.method==='GET'));
