@@ -23,13 +23,18 @@
     '.review-memo{width:100%;min-height:82px;padding:10px;background:#1a1426;color:#f3eada;border:1px solid #b49a66;border-radius:6px;font-size:16px;line-height:1.7}',
     '.review-memo-summary{border-left:2px solid #d6bc80;padding:10px 14px;margin:10px 0 22px;text-align:left;white-space:pre-wrap;overflow-wrap:anywhere;color:#e5d6ed;font-size:13px}',
     '.review-status{font-size:12px;color:#d6bc80;margin:10px 0;line-height:1.8}',
-    '.review-quiet{border:0;background:transparent;color:#d6bc80;text-decoration:underline;cursor:pointer;min-height:44px}'
+    '.review-quiet{border:0;background:transparent;color:#d6bc80;text-decoration:underline;cursor:pointer;min-height:44px}',
+    '.review-method{margin:2px auto 20px;max-width:600px;padding:15px 17px;border:1px solid #d6bc8052;border-radius:9px;background:#23192e;text-align:left}.review-method h2{margin:0 0 6px;font-weight:400;font-size:17px;color:#eed7a1}.review-method p{margin:0 0 7px;font-size:12px;line-height:1.85;color:#dfd2e8}.review-method details,.review-reason{font-size:12px;line-height:1.8;color:#d8cce0}.review-method summary,.review-reason summary{color:#e5cb94;cursor:pointer;min-height:34px}.review-reason{margin:16px 0;padding:12px 15px;border:1px solid #d6bc8040;border-radius:7px;background:#2d2238}.review-reason p{margin:8px 0;white-space:normal}',
+    '.review-quick-topic{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.review-quick-topic button{margin:0;min-height:46px;padding:7px;white-space:normal}.review-quick-panel .review-reason{margin:14px 0}'
   ].join('\n');
   document.head.append(style);
 
   const quick=make('section','review-quick',
-    '<h2>今日の一枚をひく</h2><p>登録なし・生年月日の入力なしで、15枚のカードから今日のヒントを一枚ご紹介します。</p><button type="button" class="action" id="review-quick-start">一枚ひいてみる</button>');
+    '<h2>今日の一枚をひく</h2><p>登録なし・生年月日の入力なし。今のテーマを選ぶだけで、その日のヒントを一枚お届けします。</p><div class="review-quick-topic" role="group" aria-label="今日の一枚のテーマを選ぶ"><button type="button" class="action" data-quick-theme="love">恋愛</button><button type="button" class="action" data-quick-theme="work">仕事</button><button type="button" class="action" data-quick-theme="money">金運</button><button type="button" class="action" data-quick-theme="general">総合</button></div>');
   setup.insertBefore(quick,setup.firstElementChild);
+  const method=make('section','review-method',
+    '<h2>15枚のカードから、あなたの今を読み解く</h2><p>カードの象徴と、選んだ悩み・気持ちを重ねて、一歩踏み出すための言葉を届けます。</p><details id="review-method-details"><summary>占いの仕組み・判断基準を見る</summary><p>①オリジナルの15枚のカードにはそれぞれ象徴と解釈があります。②詳しい占いでは恋愛・仕事・金運・総合からテーマと具体的な相談、途中の気持ちを選びます。③選んだカードと回答に対応する独自の文章を組み合わせます。</p><p>今日の運勢は生年月日と日本時間の日付、今日の一枚は日本時間の日付と選んだテーマが基準です。風水・天体の運行・霊視・統計的な的中率を使った予測ではなく、生成AIが自由記述の相談文を解析する仕組みでもありません。娯楽と気持ちの整理のためにお楽しみください。</p></details>');
+  setup.insertBefore(method,quick);
 
   const journal=make('section','review-journal',
     '<h2>保存したカード</h2><p>希望した場合だけ、このブラウザに最大7件の要約を保存します。生年月日や相談メモは保存しません。</p><ul class="review-journal-list" id="review-journal-list"></ul><button type="button" class="review-quiet" id="review-journal-delete">すべて削除する</button><p class="review-status" id="review-journal-status" role="status"></p>');
@@ -38,7 +43,7 @@
   quick.after(journal);
 
   const panel=make('section','review-quick-panel',
-    '<p id="review-quick-caption"></p><h2 id="review-quick-title"></h2><img id="review-quick-art" alt=""><p id="review-quick-body"></p><p id="review-quick-advice"></p><div class="actions"><button type="button" class="action" id="review-quick-detail">詳しく占う</button><button type="button" class="action secondary" id="review-quick-save">この一枚を保存</button></div><p class="review-status" id="review-quick-status" role="status"></p><p>独自の固定文から作った娯楽コンテンツです。未来を予言するものではありません。</p>');
+    '<p id="review-quick-caption"></p><h2 id="review-quick-title"></h2><img id="review-quick-art" alt=""><p id="review-quick-body"></p><p id="review-quick-advice"></p><details class="review-reason"><summary>なぜこの一枚になったの？</summary><p id="review-quick-reason"></p></details><div class="actions"><button type="button" class="action" id="review-quick-detail">詳しく占う</button><button type="button" class="action secondary" id="review-quick-save">この一枚を保存</button></div><p class="review-status" id="review-quick-status" role="status"></p><p>独自の固定文から作った娯楽コンテンツです。未来を予言するものではありません。</p>');
   panel.id='review-quick-panel';
   panel.hidden=true;
   panel.querySelector('#review-quick-title').setAttribute('tabindex','-1');
@@ -51,6 +56,16 @@
   const memoDisplay=document.createElement('p');
   memoDisplay.id='review-memo-summary';memoDisplay.className='review-memo-summary';memoDisplay.hidden=true;
   summary.after(memoDisplay);
+  const reason=make('details','review-reason','<summary>このメッセージの読み解き方</summary><p id="review-reason-text"></p>');
+  memoDisplay.after(reason);
+  function updateReason(){
+    if(!currentCard||!cardById[currentCard])return;
+    const card=cardById[currentCard];
+    const situation=situations[selectedTheme]?.[Number(selectedSituation)];
+    const query=typeof concern==='function'?concern():null;
+    const segment=typeof stage==='number'?['今のあなた','気持ちの奥','次の一歩'][stage]:'今のあなた';
+    document.getElementById('review-reason-text').textContent='今回のテーマ「'+themes[selectedTheme]+'」、相談「'+(query?.[0]||situation?.label||'未選択')+'」に対し、'+(stage+1)+'枚目の「'+card.label+'」がもつ象徴を「'+segment+'」という役割から読み解いています。答えを断定する占いではなく、カードの意味・選んだ言葉・今できる行動を結び付ける独自のメッセージです。';
+  }
 
   const finalSave=make('button','action secondary','この3枚を保存');
   finalSave.type='button';finalSave.id='review-save-reading';
@@ -156,12 +171,12 @@
     }catch(_){status.textContent='端末の設定により保存できませんでした。';}
   }
   let quickRecord=null;
-  document.getElementById('review-quick-start').addEventListener('click',()=>{
+  document.querySelectorAll('[data-quick-theme]').forEach(button=>button.addEventListener('click',()=>{
     const date=tokyoDay();
+    const theme=button.dataset.quickTheme;
     let hash=2166136261;
-    for(const c of date)hash=Math.imul(hash^c.charCodeAt(0),16777619)>>>0;
+    for(const c of date+':'+theme)hash=Math.imul(hash^c.charCodeAt(0),16777619)>>>0;
     const card=cardCatalogue[hash%cardCatalogue.length];
-    const theme=document.querySelector('input[name="theme"]:checked')?.value||'love';
     const words=readingFor(theme,card.id);
     const action=adviceFor(card.id);
     document.getElementById('review-quick-caption').textContent=date+' · '+themes[theme]+' · '+card.label+'のカード';
@@ -171,11 +186,12 @@
     art.alt=card.label+'のカードのイラスト';
     document.getElementById('review-quick-body').textContent=words[1];
     document.getElementById('review-quick-advice').textContent='今日の小さな一歩：'+action;
+    document.getElementById('review-quick-reason').textContent='日本時間の'+date+'と選んだ「'+themes[theme]+'」をもとに、15枚の中から「'+card.label+'」が決まる再現可能な仕組みです。カードの象徴と悩み別の独自メッセージを組み合わせています。未来の予知ではありません。';
     document.getElementById('review-quick-status').textContent='';
     quickRecord={date,theme:themes[theme],card:card.label,heading:words[0],action};
     setup.hidden=true;panel.hidden=false;
     document.getElementById('review-quick-title').focus();
-  });
+  }));
   document.getElementById('review-quick-save').addEventListener('click',()=>saveRecord(quickRecord,'review-quick-status'));
   document.getElementById('review-quick-detail').addEventListener('click',()=>{
     panel.hidden=true;setup.hidden=false;displayHistory();
@@ -193,9 +209,9 @@
     memoDisplay.hidden=!memo;
     memoDisplay.textContent=memo?'あなたが入力した相談メモ：'+memo:'';
   }
-  document.querySelectorAll('.cards button[data-card]').forEach(button=>button.addEventListener('click',()=>{renderMemo();refreshMonthly();}));
-  document.getElementById('journey-response').addEventListener('submit',()=>{renderMemo();refreshMonthly();});
-  ['journey-back','card-back'].forEach(id=>document.getElementById(id).addEventListener('click',()=>{renderMemo();refreshMonthly();}));
+  document.querySelectorAll('.cards button[data-card]').forEach(button=>button.addEventListener('click',()=>{renderMemo();refreshMonthly();updateReason();}));
+  document.getElementById('journey-response').addEventListener('submit',()=>{renderMemo();refreshMonthly();updateReason();});
+  ['journey-back','card-back'].forEach(id=>document.getElementById(id).addEventListener('click',()=>{renderMemo();refreshMonthly();updateReason();}));
   finalSave.addEventListener('click',()=>{
     if(draws.length!==3)return;
     saveRecord({date:tokyoDay(),theme:themes[selectedTheme],card:draws.map(id=>motifs[id]).join('・'),heading:document.getElementById('result-title').textContent,action:adviceFor(draws[2])},'review-save-status');
